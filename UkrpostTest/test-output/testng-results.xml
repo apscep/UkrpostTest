@@ -1,33 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" total="3" passed="3">
+<testng-results skipped="0" failed="0" total="5" passed="5">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="16654" started-at="2017-12-15T12:57:42Z" finished-at="2017-12-15T12:57:59Z">
+  <suite name="Default suite" duration-ms="30236" started-at="2018-01-24T14:50:14Z" finished-at="2018-01-24T14:50:45Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="16654" started-at="2017-12-15T12:57:42Z" finished-at="2017-12-15T12:57:59Z">
-      <class name="ukrpostTesting.EnterPAChrome">
-        <test-method status="PASS" signature="RunBrowser()[pri:0, instance:ukrpostTesting.EnterPAChrome@26be92ad]" name="RunBrowser" is-config="true" duration-ms="2403" started-at="2017-12-15T14:57:42Z" description="Start Browser" finished-at="2017-12-15T14:57:45Z">
+    <test name="Default test" duration-ms="30236" started-at="2018-01-24T14:50:14Z" finished-at="2018-01-24T14:50:45Z">
+      <class name="ukrpostTesting.EnterPaMakeShipment">
+        <test-method status="PASS" signature="RunBrowser()[pri:0, instance:ukrpostTesting.EnterPaMakeShipment@475530b9]" name="RunBrowser" is-config="true" duration-ms="2441" started-at="2018-01-24T16:50:14Z" description="Start Browser" finished-at="2018-01-24T16:50:17Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- RunBrowser -->
-        <test-method status="PASS" signature="Loadsite()[pri:0, instance:ukrpostTesting.EnterPAChrome@26be92ad]" name="Loadsite" duration-ms="4302" started-at="2017-12-15T14:57:45Z" description="This test will check condition of web site" finished-at="2017-12-15T14:57:49Z">
+        <test-method status="PASS" signature="Loadsite()[pri:0, instance:ukrpostTesting.EnterPaMakeShipment@475530b9]" name="Loadsite" duration-ms="10027" started-at="2018-01-24T16:50:17Z" description="This test will check condition of web site" finished-at="2018-01-24T16:50:27Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Loadsite -->
-        <test-method status="PASS" signature="LoginToPa()[pri:0, instance:ukrpostTesting.EnterPAChrome@26be92ad]" name="LoginToPa" duration-ms="5509" started-at="2017-12-15T14:57:49Z" description="This test will login personal account" depends-on-methods="ukrpostTesting.EnterPAChrome.Loadsite" finished-at="2017-12-15T14:57:55Z">
+        <test-method status="PASS" signature="LoginToPa()[pri:0, instance:ukrpostTesting.EnterPaMakeShipment@475530b9]" name="LoginToPa" duration-ms="5366" started-at="2018-01-24T16:50:27Z" description="This test will login personal account" depends-on-methods="ukrpostTesting.EnterPaMakeShipment.Loadsite" finished-at="2018-01-24T16:50:32Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- LoginToPa -->
-        <test-method status="PASS" signature="LogoutPa()[pri:0, instance:ukrpostTesting.EnterPAChrome@26be92ad]" name="LogoutPa" duration-ms="3643" started-at="2017-12-15T14:57:55Z" description="This test will log out from personal account" depends-on-methods="ukrpostTesting.EnterPAChrome.LoginToPa" finished-at="2017-12-15T14:57:58Z">
+        <test-method status="PASS" signature="CreateShipmentGroup()[pri:0, instance:ukrpostTesting.EnterPaMakeShipment@475530b9]" name="CreateShipmentGroup" duration-ms="5103" started-at="2018-01-24T16:50:32Z" description="Test to create shipment Group" depends-on-methods="ukrpostTesting.EnterPaMakeShipment.LoginToPa" finished-at="2018-01-24T16:50:37Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- LogoutPa -->
-        <test-method status="PASS" signature="CloseBrowser()[pri:0, instance:ukrpostTesting.EnterPAChrome@26be92ad]" name="CloseBrowser" is-config="true" duration-ms="783" started-at="2017-12-15T14:57:58Z" finished-at="2017-12-15T14:57:59Z">
+        </test-method> <!-- CreateShipmentGroup -->
+        <test-method status="PASS" signature="CreateShipment()[pri:0, instance:ukrpostTesting.EnterPaMakeShipment@475530b9]" name="CreateShipment" duration-ms="6440" started-at="2018-01-24T16:50:37Z" description="Test to create shipment" depends-on-methods="ukrpostTesting.EnterPaMakeShipment.CreateShipmentGroup" finished-at="2018-01-24T16:50:44Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CreateShipment -->
+        <test-method status="PASS" signature="CheckShipmentCreation()[pri:0, instance:ukrpostTesting.EnterPaMakeShipment@475530b9]" name="CheckShipmentCreation" duration-ms="49" started-at="2018-01-24T16:50:44Z" description="Check shipment creation" depends-on-methods="ukrpostTesting.EnterPaMakeShipment.CreateShipment" finished-at="2018-01-24T16:50:44Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CheckShipmentCreation -->
+        <test-method status="PASS" signature="CloseBrowser()[pri:0, instance:ukrpostTesting.EnterPaMakeShipment@475530b9]" name="CloseBrowser" is-config="true" duration-ms="794" started-at="2018-01-24T16:50:44Z" finished-at="2018-01-24T16:50:45Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- CloseBrowser -->
-      </class> <!-- ukrpostTesting.EnterPAChrome -->
+      </class> <!-- ukrpostTesting.EnterPaMakeShipment -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

@@ -35,7 +35,7 @@ public class EnterPAChrome {
 	Thread.sleep(500);
 	wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[1]/div/ul/li[6]/a")).click();
 		String currentUrl2 = wd.getCurrentUrl();
-	Assert.assertEquals(currentUrl2, "http://ukrposhta.ua/login");
+	Assert.assertEquals(currentUrl2, "https://ukrposhta.ua/login/");
 	Thread.sleep(500);
 		}
 	
