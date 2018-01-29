@@ -82,12 +82,12 @@ public class EnterPaMakeShipment {
 	wd.findElement(By.cssSelector("input[id='biggest-size']")).sendKeys("50");
 	wd.findElement(By.cssSelector("input[id='postpay']")).sendKeys("60");
 	//Check default radio button is selected
-	wd.findElement(By.cssSelector("label[for='RETURN']")).isSelected();
+	System.out.println("Radio button is selected and thi is " + wd.findElement(By.cssSelector("label[for='RETURN']")).isSelected());
 	wd.findElement(By.cssSelector("label[for='RETURN_AFTER_FREE_STORAGE']")).click();
 	wd.findElement(By.cssSelector("label[for='recommended']")).click();
 	wd.findElement(By.cssSelector("label[for='sms']")).click();
 	//Check default radio button is selected
-	wd.findElement(By.cssSelector("label[for='paidByRecipientFalse']")).isSelected();
+	System.out.println("Check Box  is selected and thi is " + wd.findElement(By.cssSelector("label[for='paidByRecipientFalse']")).isSelected());
 	wd.findElement(By.cssSelector("button[id='submit-button']")).click();
 	Thread.sleep(5000);
 	}
