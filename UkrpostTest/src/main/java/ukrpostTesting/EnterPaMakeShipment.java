@@ -56,7 +56,7 @@ public class EnterPaMakeShipment {
 	wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[3]/div/div/div[2]/div[2]/div[1]/div/div/button")).click();
 	Thread.sleep(500);
 	//Check warning text presence
-	wd.findElement(By.cssSelector("div[class='warning info ng-scope']")).getText().equals("Відправлення відсутні. Для початку роботи натисніть кнопку \"Створити відправлення\"");
+	//wd.findElement(By.cssSelector("div[class='warning info ng-scope']")).getText().equals("Відправлення відсутні. Для початку роботи натисніть кнопку \"Створити відправлення\"");
 	wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[3]/div/div/div[2]/div[2]/div[1]/div[2]/button[2]")).click();
 	Thread.sleep(1000);
 	wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[3]/div/div/div[2]/div[2]/div/form/fieldset/div[1]/div/h3")).getText().equals("Реєстрація нового відправлення");
