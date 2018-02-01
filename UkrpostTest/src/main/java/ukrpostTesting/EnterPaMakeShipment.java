@@ -25,7 +25,6 @@ public class EnterPaMakeShipment {
 	chromeOptions.addArguments("--start-maximized");
 	wd = new ChromeDriver(chromeOptions);
 	
-	
 	}
 	@Test (description = "This test will check condition of web site")
 	public void Loadsite () throws InterruptedException {
@@ -81,13 +80,15 @@ public class EnterPaMakeShipment {
 	wd.findElement(By.cssSelector("input[id='declared']")).sendKeys("500");
 	wd.findElement(By.cssSelector("input[id='biggest-size']")).sendKeys("50");
 	wd.findElement(By.cssSelector("input[id='postpay']")).sendKeys("60");
+	Thread.sleep(1000);
 	//Check default radio button is selected
-	System.out.println("Radio button is selected and thi is " + wd.findElement(By.cssSelector("label[for='RETURN']")).isSelected());
+	System.out.println("Default Radio button is selected and this is " + wd.findElement(By.id("RETURN")).isSelected());
 	wd.findElement(By.cssSelector("label[for='RETURN_AFTER_FREE_STORAGE']")).click();
 	wd.findElement(By.cssSelector("label[for='recommended']")).click();
 	wd.findElement(By.cssSelector("label[for='sms']")).click();
-	//Check default radio button is selected
-	System.out.println("Check Box  is selected and thi is " + wd.findElement(By.cssSelector("label[for='paidByRecipientFalse']")).isSelected());
+	//Check checkBox  is selected
+	System.out.println("Check Box  is selected and this is " + wd.findElement(By.id("recommended")).isSelected());
+	System.out.println("Check Box  is selected and this is " + wd.findElement(By.id("sms")).isSelected());
 	wd.findElement(By.cssSelector("button[id='submit-button']")).click();
 	Thread.sleep(5000);
 	}
