@@ -41,8 +41,7 @@ public class EnterPaFirefox {
 	Thread.sleep(500);
 	wd.findElement(By.xpath("//*[@id=\"login-submit\"]")).click();
 	Thread.sleep(2500);
-	Assert.assertTrue(wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[3]/div/div/div[2]/div[1]/h3")).isDisplayed());
-	wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[3]/div/div/div[2]/div[1]/h3")).getText().equals("Особистий кабінет");
+	wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[1]/h3")).getText().equals("Особистий кабінет");
 	}
 	@Test (dependsOnMethods="LoginToPa", description = "This test will log out from personal account")
 	public void LogoutPa () throws InterruptedException {
