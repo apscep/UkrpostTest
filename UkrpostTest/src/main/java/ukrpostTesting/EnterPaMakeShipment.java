@@ -42,23 +42,21 @@ public class EnterPaMakeShipment {
 	wd.findElement(By.xpath(".//*[@id=\"login-form\"]/form/div[2]/div/input")).sendKeys(passwordAbraam);
 	Thread.sleep(500);
 	wd.findElement(By.xpath("//*[@id=\"login-submit\"]")).click();
-	Thread.sleep(2500);
-	Assert.assertTrue(wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[3]/div/div/div[2]/div[1]/h3")).isDisplayed());
-	wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[3]/div/div/div[2]/div[1]/h3")).getText().equals("Особистий кабінет");
+	Thread.sleep(2000);
+	wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[1]/h3")).getText().equals("Особистий кабінет");
 	}
 	@Test (dependsOnMethods="LoginToPa", description = "Test to create shipment Group")
 	public void CreateShipmentGroup () throws InterruptedException {
 	Thread.sleep(1000);	
-	wd.findElement(By.xpath("//*[@id=\"creategroup\"]")).click();
-	Thread.sleep(500);	
-	wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[3]/div/div/div[2]/div[2]/div[1]/div/div/input")).sendKeys("FirstGroup");
-	wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[3]/div/div/div[2]/div[2]/div[1]/div/div/button")).click();
+	wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div[1]/div[1]/div/div[2]/div/button")).click();
+	Thread.sleep(1000);	
+	Assert.assertTrue(wd.findElement(By.cssSelector("input[name='shipmentgroupname']")).isDisplayed());
+	wd.findElement(By.cssSelector("input[name='shipmentgroupname']")).sendKeys("FirstGroup");
+	wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div[1]/div[1]/div/div[3]/div/button")).click();
 	Thread.sleep(500);
-	//Check warning text presence
-	//wd.findElement(By.cssSelector("div[class='warning info ng-scope']")).getText().equals("Відправлення відсутні. Для початку роботи натисніть кнопку \"Створити відправлення\"");
-	wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[3]/div/div/div[2]/div[2]/div[1]/div[2]/button[2]")).click();
-	Thread.sleep(1000);
-	wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[3]/div/div/div[2]/div[2]/div/form/fieldset/div[1]/div/h3")).getText().equals("Реєстрація нового відправлення");
+	wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div[1]/div[2]/div/div[2]/div/button")).click();
+	Thread.sleep(2000);
+	wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div/form/fieldset/div[1]/div/h3")).getText().equals("Реєстрація нового відправлення");
 	}
 		
 	@Test (dependsOnMethods="CreateShipmentGroup", description = "Test to create shipment")
@@ -82,19 +80,19 @@ public class EnterPaMakeShipment {
 	wd.findElement(By.cssSelector("input[id='postpay']")).sendKeys("60");
 	Thread.sleep(1000);
 	//Check default radio button is selected
-	System.out.println("Default Radio button is selected and this is " + wd.findElement(By.id("RETURN")).isSelected());
+	Assert.assertTrue( wd.findElement(By.id("RETURN")).isSelected());
 	wd.findElement(By.cssSelector("label[for='RETURN_AFTER_FREE_STORAGE']")).click();
 	wd.findElement(By.cssSelector("label[for='recommended']")).click();
 	wd.findElement(By.cssSelector("label[for='sms']")).click();
 	//Check checkBox  is selected
-	System.out.println("Check Box  is selected and this is " + wd.findElement(By.id("recommended")).isSelected());
-	System.out.println("Check Box  is selected and this is " + wd.findElement(By.id("sms")).isSelected());
+	Assert.assertTrue( wd.findElement(By.id("recommended")).isSelected());
+	Assert.assertTrue( wd.findElement(By.id("sms")).isSelected());
 	wd.findElement(By.cssSelector("button[id='submit-button']")).click();
 	Thread.sleep(5000);
 	}
 	@Test (dependsOnMethods="CreateShipment", description = "Check shipment creation")
 	public void CheckShipmentCreation () throws InterruptedException {
-	wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[3]/div/div/div[2]/div[2]/div[2]/div/div[1]/table/tbody/tr/td[3]")).getText().equals("Створене");
+	wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div[1]/div[1]/div/div[1]/h3")).getText().equals("Списки відправлень");
 	}
 	@AfterClass
 	public void CloseBrowser(){
