@@ -2,6 +2,8 @@ package ukrpostTesting;
 
 
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -24,45 +26,38 @@ public class EnterPaMakeShipment {
 	ChromeOptions chromeOptions = new ChromeOptions();
 	chromeOptions.addArguments("--start-maximized");
 	wd = new ChromeDriver(chromeOptions);
+	wd.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
 	
 	}
 	@Test (description = "This test will check condition of web site")
-	public void Loadsite () throws InterruptedException {
+	public void Loadsite ()  {
 	wd.get(ukrpostUrl);	
-	Thread.sleep(500);
 	wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[1]/div/ul/li[6]/a")).click();
 	String currentUrl2 = wd.getCurrentUrl();
 	Assert.assertEquals(currentUrl2, "https://ukrposhta.ua/login/");
-	Thread.sleep(500);
+	
 		}
 	
 	@Test (dependsOnMethods="Loadsite", description = "This test will login personal account")
-	public void LoginToPa() throws InterruptedException {
+	public void LoginToPa() {
 	wd.findElement(By.xpath("//*[@id=\"login-form\"]/form/div[1]/div/input")).sendKeys(loginAbraam);
 	wd.findElement(By.xpath(".//*[@id=\"login-form\"]/form/div[2]/div/input")).sendKeys(passwordAbraam);
-	Thread.sleep(500);
 	wd.findElement(By.xpath("//*[@id=\"login-submit\"]")).click();
-	Thread.sleep(2500);
-	Assert.assertTrue(wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[3]/div/div/div[2]/div[1]/h3")).isDisplayed());
-	wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[3]/div/div/div[2]/div[1]/h3")).getText().equals("Особистий кабінет");
+	wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[1]/h3")).getText().equals("Особистий кабінет");
 	}
 	@Test (dependsOnMethods="LoginToPa", description = "Test to create shipment Group")
 	public void CreateShipmentGroup () throws InterruptedException {
-	Thread.sleep(1000);	
-	wd.findElement(By.xpath("//*[@id=\"creategroup\"]")).click();
-	Thread.sleep(500);	
-	wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[3]/div/div/div[2]/div[2]/div[1]/div/div/input")).sendKeys("FirstGroup");
-	wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[3]/div/div/div[2]/div[2]/div[1]/div/div/button")).click();
-	Thread.sleep(500);
-	//Check warning text presence
-	//wd.findElement(By.cssSelector("div[class='warning info ng-scope']")).getText().equals("Відправлення відсутні. Для початку роботи натисніть кнопку \"Створити відправлення\"");
-	wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[3]/div/div/div[2]/div[2]/div[1]/div[2]/button[2]")).click();
-	Thread.sleep(1000);
-	wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[3]/div/div/div[2]/div[2]/div/form/fieldset/div[1]/div/h3")).getText().equals("Реєстрація нового відправлення");
+	Thread.sleep(2000);
+	wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div[1]/div[1]/div/div[2]/div/button")).click();
+	Assert.assertTrue(wd.findElement(By.cssSelector("input[name='shipmentgroupname']")).isDisplayed());
+	wd.findElement(By.cssSelector("input[name='shipmentgroupname']")).sendKeys("FirstGroup");
+	wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div[1]/div[1]/div/div[3]/div/button")).click();
+	wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div[1]/div[2]/div/div[2]/div/button")).click();
+	wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div/form/fieldset/div[1]/div/h3")).getText().equals("Реєстрація нового відправлення");
 	}
-		
+	
 	@Test (dependsOnMethods="CreateShipmentGroup", description = "Test to create shipment")
-	public void CreateShipment () throws InterruptedException {
+	public void CreateShipment ()  {
 	wd.findElement(By.cssSelector("input[id='dropOffPostcode']")).sendKeys("04080");
 	wd.findElement(By.cssSelector("input[id='surname']")).sendKeys("Іванов");
 	wd.findElement(By.cssSelector("input[id='name']")).sendKeys("Іван");
@@ -80,21 +75,20 @@ public class EnterPaMakeShipment {
 	wd.findElement(By.cssSelector("input[id='declared']")).sendKeys("500");
 	wd.findElement(By.cssSelector("input[id='biggest-size']")).sendKeys("50");
 	wd.findElement(By.cssSelector("input[id='postpay']")).sendKeys("60");
-	Thread.sleep(1000);
 	//Check default radio button is selected
-	System.out.println("Default Radio button is selected and this is " + wd.findElement(By.id("RETURN")).isSelected());
+	Assert.assertTrue( wd.findElement(By.id("RETURN")).isSelected());
 	wd.findElement(By.cssSelector("label[for='RETURN_AFTER_FREE_STORAGE']")).click();
 	wd.findElement(By.cssSelector("label[for='recommended']")).click();
 	wd.findElement(By.cssSelector("label[for='sms']")).click();
 	//Check checkBox  is selected
-	System.out.println("Check Box  is selected and this is " + wd.findElement(By.id("recommended")).isSelected());
-	System.out.println("Check Box  is selected and this is " + wd.findElement(By.id("sms")).isSelected());
+	Assert.assertTrue( wd.findElement(By.id("recommended")).isSelected());
+	Assert.assertTrue( wd.findElement(By.id("sms")).isSelected());
 	wd.findElement(By.cssSelector("button[id='submit-button']")).click();
-	Thread.sleep(5000);
 	}
 	@Test (dependsOnMethods="CreateShipment", description = "Check shipment creation")
-	public void CheckShipmentCreation () throws InterruptedException {
-	wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[3]/div/div/div[2]/div[2]/div[2]/div/div[1]/table/tbody/tr/td[3]")).getText().equals("Створене");
+	public void CheckShipmentCreation () throws InterruptedException  {
+	Thread.sleep(3000);
+	wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div[1]/div[1]/div/div[1]/h3")).getText().equals("Списки відправлень");
 	}
 	@AfterClass
 	public void CloseBrowser(){
