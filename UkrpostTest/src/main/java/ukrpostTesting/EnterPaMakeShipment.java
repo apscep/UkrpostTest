@@ -35,7 +35,6 @@ public class EnterPaMakeShipment {
 	wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[1]/div/ul/li[6]/a")).click();
 	String currentUrl2 = wd.getCurrentUrl();
 	Assert.assertEquals(currentUrl2, "https://ukrposhta.ua/login/");
-	
 		}
 	
 	@Test (dependsOnMethods="Loadsite", description = "This test will login personal account")
