@@ -2,8 +2,11 @@ package ukrpostTesting;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -26,14 +29,19 @@ public class DropDown {
 	wd.get(ukrpostUrl);	
 	String currentUrl = wd.getCurrentUrl();
 	Assert.assertEquals(currentUrl, "http://ukrposhta.ua/");
-    Actions a = new Actions(wd);
-    a.moveToElement(wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/header/div/nav/ul/li[1]/a"))).build().perform();
-		}
+   		}
 	@Test (dependsOnMethods="Loadsite", description = "This test will check dropdown page") 
-	public void CheckElement () throws InterruptedException {
-	String ExpectedText = wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div[1]/h1")).getText();
-	String ActualText = "Вінницька дирекція";
-	Assert.assertEquals(ExpectedText, ActualText);
+	public void CheckElement ()  {
+	Actions a = new Actions(wd);
+	WebElement xpath1  = wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/header/div/nav/ul/li[1]/a"));
+	//WebElement xpath2  = wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/header/div/nav/ul/li[1]/ul/li[5]/a"));
+	a.moveToElement(xpath1).build().perform();
+	WebDriverWait wait = new WebDriverWait(wd, 5); 
+	wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"main-wrap\"]/header/div/nav/ul/li[1]/ul/li[5]/a")));
+	WebElement menuOption = wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/header/div/nav/ul/li[1]/ul/li[5]/a"));
+	menuOption.click();
+	Assert.assertEquals("https://ukrposhta.ua/vakansii/", wd.getCurrentUrl());
+	
 	}
 	@AfterClass
 	public void CloseBrowser(){
