@@ -1,19 +1,17 @@
 package ukrpostTesting;
 
-
-
 import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
 public class EnterPaMakeShipment {
 	WebDriver wd;
 	String loginAbraam = "ukrpost@i.ua";
@@ -46,7 +44,7 @@ public class EnterPaMakeShipment {
 	}
 	@Test (dependsOnMethods="LoginToPa", description = "Test to create shipment Group")
 	public void CreateShipmentGroup () throws InterruptedException {
-	Thread.sleep(2000);
+	Thread.sleep(3000);
 	wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div[1]/div[1]/div/div[2]/div/button")).click();
 	Assert.assertTrue(wd.findElement(By.cssSelector("input[name='shipmentgroupname']")).isDisplayed());
 	wd.findElement(By.cssSelector("input[name='shipmentgroupname']")).sendKeys("FirstGroup");
@@ -86,8 +84,9 @@ public class EnterPaMakeShipment {
 	}
 	@Test (dependsOnMethods="CreateShipment", description = "Check shipment creation")
 	public void CheckShipmentCreation () throws InterruptedException  {
-	Thread.sleep(3000);
-	wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div[1]/div[1]/div/div[1]/h3")).getText().equals("Списки відправлень");
+	WebDriverWait wait = new WebDriverWait(wd, 20);
+	wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div[1]/div[1]/div/div[1]/h3")));
+	wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div[2]/div/div[1]/div[1]/h3")).getText().equals("Списки відправлень");
 	}
 	@AfterClass
 	public void CloseBrowser(){

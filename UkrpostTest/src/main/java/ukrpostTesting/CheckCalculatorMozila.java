@@ -36,9 +36,6 @@ public class CheckCalculatorMozila {
 	//Select type of shipment
 	Select typeSelect = new Select(wd.findElement(By.cssSelector("select[name='type_of_departure']")));
 	typeSelect.selectByValue("express");
-	//Select category of shipment
-	Select departureSelect = new Select(wd.findElement(By.cssSelector("select[name='departure_category']")));
-	departureSelect.selectByValue("without_declared_value");
 	//Select sender's type
 	Select departureTypeSelect = new Select(wd.findElement(By.cssSelector("select[name='departure_type']")));
 	departureTypeSelect.selectByValue("physical");
@@ -48,6 +45,7 @@ public class CheckCalculatorMozila {
 	//Select delivery method
 	Select deliveryMethodSelect = new Select(wd.findElement(By.cssSelector("select[name='delivery_method']")));
 	deliveryMethodSelect.selectByValue("storage-storage");
+	wd.findElement(By.cssSelector("input[name='declared_value_grn']")).sendKeys("5");
 	//Chose shipment weight in kg
 	wd.findElement(By.cssSelector("input[name='mass_kg']")).sendKeys("5");
 	//Chose shipment weight in g
@@ -60,8 +58,7 @@ public class CheckCalculatorMozila {
 	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("result")));
 	Assert.assertTrue(wd.findElement(By.id("result")).isDisplayed());
 	//Validate Shipment price Expected - 48
-	String ExpectedPrice = "Загальна сума: 48 грн.";
-	Assert.assertEquals(wd.findElement(By.xpath("//*[@id=\"sum_result\"]")).getText(), ExpectedPrice);
+	Assert.assertEquals(wd.findElement(By.xpath("//*[@id=\"sum_result\"]")).getText(), "Загальна сума: 48 грн.");
 	   }
 	@AfterClass
 	public void CloseBrowser(){

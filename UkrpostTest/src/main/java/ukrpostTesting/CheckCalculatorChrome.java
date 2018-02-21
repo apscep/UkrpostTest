@@ -38,9 +38,6 @@ public class CheckCalculatorChrome {
 	//Select type of shipment
 	Select typeSelect = new Select(wd.findElement(By.cssSelector("select[name='type_of_departure']")));
 	typeSelect.selectByValue("express");
-	//Select category of shipment
-	Select departureSelect = new Select(wd.findElement(By.cssSelector("select[name='departure_category']")));
-	departureSelect.selectByValue("without_declared_value");
 	//Select sender's type
 	Select departureTypeSelect = new Select(wd.findElement(By.cssSelector("select[name='departure_type']")));
 	departureTypeSelect.selectByValue("physical");
@@ -50,6 +47,7 @@ public class CheckCalculatorChrome {
 	//Select delivery method
 	Select deliveryMethodSelect = new Select(wd.findElement(By.cssSelector("select[name='delivery_method']")));
 	deliveryMethodSelect.selectByValue("storage-storage");
+	wd.findElement(By.cssSelector("input[name='declared_value_grn']")).sendKeys("5");
 	//Chose shipment weight in kg
 	wd.findElement(By.cssSelector("input[name='mass_kg']")).sendKeys("5");
 	//Chose shipment weight in g
