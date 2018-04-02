@@ -1,49 +1,47 @@
-package ukrpostTesting;
+package ukrpostTestingMozilla;
 
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-public class EnterPaMakeShipment {
+public class EnterPaMakeShipmentMozilla 
+{
 	WebDriver wd;
 	String loginAbraam = "ukrpost@i.ua";
 	String passwordAbraam = "446655";
     String ukrpostUrl = "http://ukrposhta.ua/";
-    
-	@BeforeClass (description = "Start Browser")
-    public void RunBrowser () {
-	System.setProperty("webdriver.chrome.driver", "C:\\dev\\Selenium\\chromedriver.exe");
-	ChromeOptions chromeOptions = new ChromeOptions();
-	chromeOptions.addArguments("--start-maximized");
-	wd = new ChromeDriver(chromeOptions);
+    @BeforeClass (description = "Start Browser")
+    public void RunBrowser () 
+    {
+	System.setProperty("webdriver.gecko.driver", "C:\\dev\\Selenium\\geckodriver.exe");
+	wd = new FirefoxDriver();
+	wd.manage().window().maximize();
 	wd.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
-	
 	}
 	@Test (description = "This test will check condition of web site")
-	public void Loadsite ()  {
+	public void Loadsite () 
+	{
 	wd.get(ukrpostUrl);	
 	wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[1]/div/ul/li[6]/a")).click();
 	String currentUrl2 = wd.getCurrentUrl();
 	Assert.assertEquals(currentUrl2, "https://ukrposhta.ua/login/");
-		}
-	
+	}
 	@Test (dependsOnMethods="Loadsite", description = "This test will login personal account")
-	public void LoginToPa() {
+	public void LoginToPa() 
+	{
 	wd.findElement(By.xpath("//*[@id=\"login-form\"]/form/div[1]/div/input")).sendKeys(loginAbraam);
 	wd.findElement(By.xpath(".//*[@id=\"login-form\"]/form/div[2]/div/input")).sendKeys(passwordAbraam);
 	wd.findElement(By.xpath("//*[@id=\"login-submit\"]")).click();
 	wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[1]/h3")).getText().equals("Особистий кабінет");
 	}
 	@Test (dependsOnMethods="LoginToPa", description = "Test to create shipment Group")
-	public void CreateShipmentGroup () throws InterruptedException {
+	public void CreateShipmentGroup () throws InterruptedException 
+	{
 	Thread.sleep(3000);
 	wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div[1]/div[1]/div/div[2]/div/button")).click();
 	Assert.assertTrue(wd.findElement(By.cssSelector("input[name='shipmentgroupname']")).isDisplayed());
@@ -52,9 +50,9 @@ public class EnterPaMakeShipment {
 	wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div[1]/div[2]/div/div[2]/div/button")).click();
 	wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div/form/fieldset/div[1]/div/h3")).getText().equals("Реєстрація нового відправлення");
 	}
-	
 	@Test (dependsOnMethods="CreateShipmentGroup", description = "Test to create shipment")
-	public void CreateShipment ()  {
+	public void CreateShipment ()  
+	{
 	wd.findElement(By.cssSelector("input[id='dropOffPostcode']")).sendKeys("04080");
 	wd.findElement(By.cssSelector("input[id='surname']")).sendKeys("Іванов");
 	wd.findElement(By.cssSelector("input[id='name']")).sendKeys("Іван");
@@ -82,14 +80,19 @@ public class EnterPaMakeShipment {
 	Assert.assertTrue( wd.findElement(By.id("sms")).isSelected());
 	wd.findElement(By.cssSelector("button[id='submit-button']")).click();
 	}
-	@Test (dependsOnMethods="CreateShipment", description = "Check shipment creation")
-	public void CheckShipmentCreation () throws InterruptedException  {
-	WebDriverWait wait = new WebDriverWait(wd, 20);
-	wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div[1]/div[1]/div/div[1]/h3")));
-	wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div[2]/div/div[1]/div[1]/h3")).getText().equals("Списки відправлень");
+	@Test (dependsOnMethods="CreateShipment", description = "Test to check crreated shipment data")
+	public void CheckShipmentData ()  
+	{
+	wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div[2]/div/div[1]/table/tbody/tr/td[7]/button/i")).click();
+	String actualShipmentStatus =  wd.findElement(By.xpath("//*[@class='modal fade ng-scope in']/div/div/div[2]/table/tbody/tr[2]/td")).getText();
+	// Check shipment status and price
+	Assert.assertEquals(actualShipmentStatus, "Створене");
+	String actualShipmentPrice =  wd.findElement(By.xpath("//*[@class='modal fade ng-scope in']/div/div/div[2]/table/tbody/tr[10]/td/div/div")).getText();
+	Assert.assertEquals(actualShipmentPrice, "63.9грн., знижка 5% врахована");
 	}
 	@AfterClass
-	public void CloseBrowser(){
+	public void CloseBrowser()
+	{
 	wd.quit();
 	}
 }

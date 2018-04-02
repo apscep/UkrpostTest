@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test name="Test">
+    <classes>
+      <class name="ukrpostTestingMozilla.CheckCalculatorMozila"/>
+      <class name="ukrpostTestingChrome.EnterPaNegativeChrome"/>
+      <class name="ukrpostTestingMozilla.EnterPaMakeShipmentMozilla"/>
+      <class name="ukrpostTestingChrome.EnterPAChrome"/>
+      <class name="ukrpostTestingChrome.EnterPaMakeShipmentChrome"/>
+      <class name="ukrpostTestingChrome.EnterPaFillShipmentDataChrome"/>
+      <class name="ukrpostTestingChrome.DropDown"/>
+      <class name="ukrpostTestingMozilla.EnterPaMozilla"/>
+      <class name="ukrpostTestingChrome.CheckCalculatorChrome"/>
+      <class name="ukrpostTestingMozilla.EnterPaNegativeMozilla"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
