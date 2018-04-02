@@ -9,7 +9,6 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 public class EnterPaMakeShipmentMozilla {
-	
 	WebDriver wd;
 	String loginAbraam = "ukrpost@i.ua";
 	String passwordAbraam = "446655";
