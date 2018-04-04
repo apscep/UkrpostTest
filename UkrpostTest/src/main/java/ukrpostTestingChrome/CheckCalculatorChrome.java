@@ -8,10 +8,15 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.ITestContext;
+import org.testng.ITestListener;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-public class CheckCalculatorChrome {
+
+import library.Utility;
+public class CheckCalculatorChrome implements ITestListener {
 	WebDriver wd;
     String ukrpostUrl = "http://ukrposhta.ua/";
     
@@ -36,6 +41,7 @@ public class CheckCalculatorChrome {
 	
 	@Test (dependsOnMethods="Loadsite", description = "This test will calculate express shipment From Kyiv to Lviv")
 	public void CalculateShipment()	{
+		Utility.CaptureScreenshot(wd, "CalculatorFailed");
 		WebDriverWait wait = new WebDriverWait(wd, 8);
 		//Select type of shipment
 		Select typeSelect = new Select(wd.findElement(By.cssSelector("select[name='type_of_departure']")));
@@ -62,11 +68,45 @@ public class CheckCalculatorChrome {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("result")));
 		Assert.assertTrue(wd.findElement(By.id("result")).isDisplayed());
 		//Validate Shipment price Expected - 48
-		Assert.assertEquals(wd.findElement(By.xpath("//*[@id=\"sum_result\"]")).getText(), "Загальна сума: 48 грн.");
+		Assert.assertEquals(wd.findElement(By.xpath("//*[@id=\"sum_result\"]")).getText(), "Загальна сума: 90 грн.");
+	
 	}
 	
 	@AfterClass
 	public void CloseBrowser()	{
 		wd.quit();
 	}
+	public void onFinish(ITestContext arg0) {
+				
+	}
+
+	public void onStart(ITestContext arg0) {
+				
+	}
+
+	public void onTestFailedButWithinSuccessPercentage(ITestResult arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void onTestFailure(ITestResult arg0) {
+    Utility.CaptureScreenshot(wd, "CalculatorFailed");
+	}
+
+	public void onTestSkipped(ITestResult arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void onTestStart(ITestResult arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void onTestSuccess(ITestResult arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 }

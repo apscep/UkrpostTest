@@ -3,16 +3,14 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="ukrpostTesting.EnterPaFillShipmentData">
+      <class name="ukrpostTestingChrome.CheckCalculatorChrome">
         <methods>
-          <include name="RunBrowser"/>
-          <include name="LoginToPa"/>
-          <include name="CreateShipment"/>
-          <include name="CreateShipmentGroup"/>
+          <include name="CalculateShipment"/>
           <include name="Loadsite"/>
-          <include name="CheckShipmentData"/>
+          <include name="CloseBrowser"/>
+          <include name="RunBrowser"/>
         </methods>
-      </class> <!-- ukrpostTesting.EnterPaFillShipmentData -->
+      </class> <!-- ukrpostTestingChrome.CheckCalculatorChrome -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
