@@ -6,6 +6,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
+
 public class Utility {
 
 	public static void CaptureScreenshot (WebDriver wd, String screenshotName) 
@@ -20,7 +21,6 @@ public class Utility {
 			System.out.println("Error during exception is"+e.getMessage());
 		}	
 	}
-
 	
 		
 	}
