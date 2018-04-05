@@ -18,7 +18,7 @@ public class EnterPAChrome  {
 	WebDriver wd;
 	String loginAbraam = "ukrpost@i.ua";
 	String passwordAbraam = "446655";
-    String ukrpostUrl = "http://ukrposhta.ua/";
+    String ukrpostUrl = Utility.setVariables().getProperty("mainUrl");
     
    	@BeforeClass (description = "Start Browser")
    		public void RunBrowser () {
@@ -36,7 +36,7 @@ public class EnterPAChrome  {
 		Assert.assertEquals(currentUrl, "http://ukrposhta.ua/");
 		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[1]/div/ul/li[6]/a")).click();
 		String currentUrl2 = wd.getCurrentUrl();
-		Assert.assertEquals(currentUrl2, "https://ukrposhta.ua/login1/");
+		Assert.assertEquals(currentUrl2, "https://ukrposhta.ua/login/");
 	}
 	
 	@Test (dependsOnMethods="Loadsite", description = "This test will login personal account")
