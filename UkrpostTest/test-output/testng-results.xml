@@ -1,33 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="1" total="2" passed="1">
+<testng-results skipped="2" failed="1" total="3" passed="0">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="5861" started-at="2018-04-05T08:40:00Z" finished-at="2018-04-05T08:40:06Z">
+  <suite name="Default suite" duration-ms="6912" started-at="2018-04-05T12:01:04Z" finished-at="2018-04-05T12:01:11Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="5861" started-at="2018-04-05T08:40:00Z" finished-at="2018-04-05T08:40:06Z">
-      <class name="ukrpostTestingChrome.CheckCalculatorChrome">
-        <test-method status="PASS" signature="RunBrowser()[pri:0, instance:ukrpostTestingChrome.CheckCalculatorChrome@26be92ad]" name="RunBrowser" is-config="true" duration-ms="2427" started-at="2018-04-05T11:40:00Z" description="Start Browser" finished-at="2018-04-05T11:40:02Z">
+    <test name="Default test" duration-ms="6912" started-at="2018-04-05T12:01:04Z" finished-at="2018-04-05T12:01:11Z">
+      <class name="ukrpostTestingChrome.EnterPAChrome">
+        <test-method status="PASS" signature="RunBrowser()[pri:0, instance:ukrpostTestingChrome.EnterPAChrome@4c70fda8]" name="RunBrowser" is-config="true" duration-ms="2448" started-at="2018-04-05T15:01:04Z" description="Start Browser" finished-at="2018-04-05T15:01:07Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- RunBrowser -->
-        <test-method status="PASS" signature="Loadsite()[pri:0, instance:ukrpostTestingChrome.CheckCalculatorChrome@26be92ad]" name="Loadsite" duration-ms="2650" started-at="2018-04-05T11:40:02Z" description="This test will check condition of web site" finished-at="2018-04-05T11:40:05Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Loadsite -->
-        <test-method status="FAIL" signature="CalculateShipment()[pri:0, instance:ukrpostTestingChrome.CheckCalculatorChrome@26be92ad]" name="CalculateShipment" duration-ms="763" started-at="2018-04-05T11:40:05Z" description="This test will calculate express shipment From Kyiv to Lviv" depends-on-methods="ukrpostTestingChrome.CheckCalculatorChrome.Loadsite" finished-at="2018-04-05T11:40:06Z">
+        <test-method status="FAIL" signature="Loadsite()[pri:0, instance:ukrpostTestingChrome.EnterPAChrome@4c70fda8]" name="Loadsite" duration-ms="3321" started-at="2018-04-05T15:01:07Z" description="This test will check condition of web site" finished-at="2018-04-05T15:01:10Z">
           <exception class="java.lang.AssertionError">
             <message>
-              <![CDATA[expected [Загальна сума: 90 грн.] but found [Загальна сума: 48 грн.]]]>
+              <![CDATA[expected [https://ukrposhta.ua/login1/] but found [https://ukrposhta.ua/login/]]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: expected [Загальна сума: 90 грн.] but found [Загальна сума: 48 грн.]
+              <![CDATA[java.lang.AssertionError: expected [https://ukrposhta.ua/login1/] but found [https://ukrposhta.ua/login/]
 	at org.testng.Assert.fail(Assert.java:94)
 	at org.testng.Assert.failNotEquals(Assert.java:496)
 	at org.testng.Assert.assertEquals(Assert.java:125)
 	at org.testng.Assert.assertEquals(Assert.java:178)
 	at org.testng.Assert.assertEquals(Assert.java:188)
-	at ukrpostTestingChrome.CheckCalculatorChrome.CalculateShipment(CheckCalculatorChrome.java:71)
+	at ukrpostTestingChrome.EnterPAChrome.Loadsite(EnterPAChrome.java:39)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -57,24 +53,28 @@
           </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- CalculateShipment -->
-        <test-method status="FAIL" signature="CloseBrowser(org.testng.ITestResult)[pri:0, instance:ukrpostTestingChrome.CheckCalculatorChrome@26be92ad]" name="CloseBrowser" is-config="true" duration-ms="0" started-at="2018-04-05T11:40:06Z" finished-at="2018-04-05T11:40:06Z">
-          <exception class="java.lang.IllegalArgumentException">
+        </test-method> <!-- Loadsite -->
+        <test-method status="PASS" signature="takeScreenShotOnFailure(org.testng.ITestResult)[pri:0, instance:ukrpostTestingChrome.EnterPAChrome@4c70fda8]" name="takeScreenShotOnFailure" is-config="true" duration-ms="350" started-at="2018-04-05T15:01:10Z" finished-at="2018-04-05T15:01:10Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=Loadsite status=FAILURE method=EnterPAChrome.Loadsite()[pri:0, instance:ukrpostTestingChrome.EnterPAChrome@4c70fda8] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- takeScreenShotOnFailure -->
+        <test-method status="SKIP" signature="LoginToPa()[pri:0, instance:ukrpostTestingChrome.EnterPAChrome@4c70fda8]" name="LoginToPa" duration-ms="0" started-at="2018-04-05T15:01:10Z" description="This test will login personal account" depends-on-methods="ukrpostTestingChrome.EnterPAChrome.Loadsite" finished-at="2018-04-05T15:01:10Z">
+          <exception class="java.lang.Throwable">
             <message>
-              <![CDATA[wrong number of arguments]]>
+              <![CDATA[Method EnterPAChrome.LoginToPa()[pri:0, instance:ukrpostTestingChrome.EnterPAChrome@4c70fda8] depends on not successfully finished methods]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.IllegalArgumentException: wrong number of arguments
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
-	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:510)
-	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:211)
-	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:138)
-	at org.testng.internal.TestMethodWorker.invokeAfterClassMethods(TestMethodWorker.java:220)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
+              <![CDATA[java.lang.Throwable: Method EnterPAChrome.LoginToPa()[pri:0, instance:ukrpostTestingChrome.EnterPAChrome@4c70fda8] depends on not successfully finished methods
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1033)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
 	at org.testng.TestRunner.privateRun(TestRunner.java:774)
 	at org.testng.TestRunner.run(TestRunner.java:624)
 	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
@@ -91,11 +91,45 @@
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.lang.IllegalArgumentException -->
+          </exception> <!-- java.lang.Throwable -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginToPa -->
+        <test-method status="SKIP" signature="LogoutPa()[pri:0, instance:ukrpostTestingChrome.EnterPAChrome@4c70fda8]" name="LogoutPa" duration-ms="0" started-at="2018-04-05T15:01:10Z" description="This test will log out from personal account" depends-on-methods="ukrpostTestingChrome.EnterPAChrome.LoginToPa" finished-at="2018-04-05T15:01:10Z">
+          <exception class="java.lang.Throwable">
+            <message>
+              <![CDATA[Method EnterPAChrome.LogoutPa()[pri:0, instance:ukrpostTestingChrome.EnterPAChrome@4c70fda8] depends on not successfully finished methods]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.Throwable: Method EnterPAChrome.LogoutPa()[pri:0, instance:ukrpostTestingChrome.EnterPAChrome@4c70fda8] depends on not successfully finished methods
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1033)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:774)
+	at org.testng.TestRunner.run(TestRunner.java:624)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1191)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1116)
+	at org.testng.TestNG.run(TestNG.java:1024)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.Throwable -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LogoutPa -->
+        <test-method status="PASS" signature="CloseBrowser()[pri:0, instance:ukrpostTestingChrome.EnterPAChrome@4c70fda8]" name="CloseBrowser" is-config="true" duration-ms="780" started-at="2018-04-05T15:01:10Z" finished-at="2018-04-05T15:01:11Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- CloseBrowser -->
-      </class> <!-- ukrpostTestingChrome.CheckCalculatorChrome -->
+      </class> <!-- ukrpostTestingChrome.EnterPAChrome -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

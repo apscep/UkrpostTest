@@ -1,12 +1,17 @@
 package ukrpostTestingMozilla;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import library.Utility;
 public class EnterPaNegativeMozilla {
 	WebDriver wd;
 	String loginAbraam = "ukrpost@i.ua";
@@ -39,6 +44,12 @@ public class EnterPaNegativeMozilla {
 		wd.findElement(By.xpath("//*[@id=\"login-form\"]/div")).getText().equals("Ћог≥н або пароль не в≥рн≥!");
 	}
 	
+	 @AfterMethod 
+	 public void takeScreenShotOnFailure(ITestResult testResult) throws IOException { 
+		if (testResult.getStatus() == ITestResult.FAILURE) { 
+		Utility.CaptureScreenshot(wd, "Negative entering personallAccount failed");	
+			}
+		}
 	@AfterClass
 	public void CloseBrowser() 	{
 		wd.quit();
