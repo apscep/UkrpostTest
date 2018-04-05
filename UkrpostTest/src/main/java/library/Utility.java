@@ -10,6 +10,8 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeSuite;
 
+
+
 public class Utility {
 
 	@BeforeSuite 
@@ -39,7 +41,7 @@ public class Utility {
 			System.out.println("Error during exception is"+e.getMessage());
 		}	
 	}
-
+	
 	
 		
 	}

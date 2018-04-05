@@ -1,4 +1,5 @@
 package ukrpostTestingChrome;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -6,9 +7,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import library.Utility;
 public class EnterPaMakeShipmentChrome {
 	WebDriver wd;
 	String loginAbraam = "ukrpost@i.ua";
@@ -90,6 +95,12 @@ public class EnterPaMakeShipmentChrome {
 		String actualShipmentPrice =  wd.findElement(By.xpath("//*[@class='modal fade ng-scope in']/div/div/div[2]/table/tbody/tr[10]/td/div/div")).getText();
 		Assert.assertEquals(actualShipmentPrice, "63.9грн., знижка 5% врахована");
 	}
+	 @AfterMethod 
+	 public void takeScreenShotOnFailure(ITestResult testResult) throws IOException { 
+		if (testResult.getStatus() == ITestResult.FAILURE) { 
+		Utility.CaptureScreenshot(wd, "Registering shipment failed");	
+			}
+		}
 	
 	@AfterClass
 	public void CloseBrowser() {
