@@ -15,9 +15,9 @@ import org.testng.annotations.Test;
 import library.Utility;
 public class EnterPaNegativeChrome {
 	WebDriver wd;
-	String loginAbraam = "ukrpost@i.ua";
-	String passwordAbraam = "446652";
-    String ukrpostUrl = "http://ukrposhta.ua/";
+	String loginAbraam = Utility.setVariables().getProperty("loginAbraam");
+	String passwordAbraam = Utility.setVariables().getProperty("passwordAbraamIncorrect");
+    String ukrpostUrl = Utility.setVariables().getProperty("mainUrl");
     
    	@BeforeClass (description = "Start Browser")
     public void RunBrowser () {

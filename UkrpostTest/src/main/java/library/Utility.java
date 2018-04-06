@@ -8,16 +8,14 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeSuite;
-
-
-
 public class Utility {
 
+	
 	@BeforeSuite
 	public static Properties setVariables () {
   		Properties prop = new Properties();
 		try {
-			FileInputStream fis = new FileInputStream("./UkrpostTest/src/main/java/library/Utility.java");
+			FileInputStream fis = new FileInputStream("./src/main/java/library/Variables.properties");
 			prop.load(fis);
  		    }  
 		catch (Exception e) {
@@ -25,7 +23,7 @@ public class Utility {
 		}
 		return prop;
 	}
-	
+	 
 	public static void CaptureScreenshot (WebDriver wd, String screenshotName) 
 	{
 		try {

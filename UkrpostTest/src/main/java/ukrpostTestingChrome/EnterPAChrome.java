@@ -1,7 +1,6 @@
 package ukrpostTestingChrome;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -16,13 +15,12 @@ import org.testng.annotations.Test;
 import library.Utility;
 public class EnterPAChrome  {
 	WebDriver wd;
-	String loginAbraam = "ukrpost@i.ua";
-	String passwordAbraam = "446655";
+	String loginAbraam = Utility.setVariables().getProperty("loginAbraam");
+	String passwordAbraam = Utility.setVariables().getProperty("passwordAbraam");
     String ukrpostUrl = Utility.setVariables().getProperty("mainUrl");
-    
    	@BeforeClass (description = "Start Browser")
    		public void RunBrowser () {
-   		System.setProperty("webdriver.chrome.driver", "C:\\dev\\Selenium\\chromedriver.exe");
+    	System.setProperty("webdriver.chrome.driver", "C:\\dev\\Selenium\\chromedriver.exe");
    		ChromeOptions chromeOptions = new ChromeOptions();
    		chromeOptions.addArguments("--start-maximized");
    		wd = new ChromeDriver(chromeOptions);

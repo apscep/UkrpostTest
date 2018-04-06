@@ -17,7 +17,7 @@ import org.testng.annotations.Test;
 import library.Utility;
 public class CheckCalculatorMozila {
 	WebDriver wd;
-    String ukrpostUrl = "http://ukrposhta.ua/";
+	String ukrpostUrl = Utility.setVariables().getProperty("mainUrl");
     
   	@BeforeClass (description = "Start Browser")
   	public void RunBrowser () {

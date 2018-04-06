@@ -8,11 +8,13 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import library.Utility;
 public class EnterPaFillShipmentData {
 	WebDriver wd;
-	String loginAbraam = "ukrpost@i.ua";
-	String passwordAbraam = "446655";
-    String ukrpostUrl = "http://ukrposhta.ua/";
+	String loginAbraam = Utility.setVariables().getProperty("loginAbraam");
+	String passwordAbraam = Utility.setVariables().getProperty("passwordAbraam");
+    String ukrpostUrl = Utility.setVariables().getProperty("mainUrl");
     @BeforeClass (description = "Start Browser")
     
     public void RunBrowser (){

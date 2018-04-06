@@ -20,7 +20,7 @@ public class DropDown {
 	WebDriver wd;
 	String loginAbraam = "ukrpost@i.ua";
 	String passwordAbraam = "446655";
-    String ukrpostUrl = "http://ukrposhta.ua";
+	String ukrpostUrl = Utility.setVariables().getProperty("mainUrl");
    	@BeforeClass (description = "Start Browser")
    	
     public void RunBrowser () {

@@ -9,8 +9,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.ITestContext;
-import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -18,10 +16,10 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import library.Utility;
-public class CheckCalculatorChrome  implements ITestListener  {
+public class CheckCalculatorChrome    {
 
 	WebDriver wd;
-    String ukrpostUrl = "http://ukrposhta.ua/";
+	String ukrpostUrl = Utility.setVariables().getProperty("mainUrl");
     
     @BeforeClass (description = "Start Browser")
     public void RunBrowser () {
@@ -83,42 +81,6 @@ public class CheckCalculatorChrome  implements ITestListener  {
 		public void CloseBrowser() {
 			wd.quit();
 	}
-
-	public void onFinish(ITestContext arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void onStart(ITestContext arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void onTestFailedButWithinSuccessPercentage(ITestResult arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void onTestFailure(ITestResult arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void onTestSkipped(ITestResult arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void onTestStart(ITestResult arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void onTestSuccess(ITestResult arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 
 
 }
