@@ -1,4 +1,5 @@
 package ukrpostTestingChrome;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -8,12 +9,17 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-public class CheckCalculatorChrome {
+
+import library.Utility;
+public class CheckCalculatorChrome    {
+
 	WebDriver wd;
-    String ukrpostUrl = "http://ukrposhta.ua/";
+	String ukrpostUrl = Utility.setVariables().getProperty("mainUrl");
     
     @BeforeClass (description = "Start Browser")
     public void RunBrowser () {
@@ -63,10 +69,18 @@ public class CheckCalculatorChrome {
 		Assert.assertTrue(wd.findElement(By.id("result")).isDisplayed());
 		//Validate Shipment price Expected - 48
 		Assert.assertEquals(wd.findElement(By.xpath("//*[@id=\"sum_result\"]")).getText(), "Загальна сума: 48 грн.");
-	}
-	
+		}
+	 @AfterMethod 
+	 public void takeScreenShotOnFailure(ITestResult testResult) throws IOException { 
+		if (testResult.getStatus() == ITestResult.FAILURE) { 
+		Utility.CaptureScreenshot(wd, "Calculator failed");	
+			}
+		}
+
 	@AfterClass
-	public void CloseBrowser()	{
-		wd.quit();
+		public void CloseBrowser() {
+			wd.quit();
 	}
+
+
 }

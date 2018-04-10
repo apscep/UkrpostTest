@@ -1,18 +1,23 @@
 package ukrpostTestingMozilla;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import library.Utility;
+
 public class EnterPaMozilla {
 	WebDriver wd;
-	String loginAbraam = "ukrpost@i.ua";
-	String passwordAbraam = "446655";
-    String ukrpostUrl = "http://ukrposhta.ua/";
+	String loginAbraam = Utility.setVariables().getProperty("loginAbraam");
+	String passwordAbraam = Utility.setVariables().getProperty("passwordAbraam");
+    String ukrpostUrl = Utility.setVariables().getProperty("mainUrl");
     
    	@BeforeClass (description = "Start Browser")
     public void RunBrowser () {
@@ -45,6 +50,12 @@ public class EnterPaMozilla {
 		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[1]/div/ul/li[6]/a")).click();
 	}
 	
+	 @AfterMethod 
+	 public void takeScreenShotOnFailure(ITestResult testResult) throws IOException { 
+		if (testResult.getStatus() == ITestResult.FAILURE) { 
+		Utility.CaptureScreenshot(wd, "Entering personal account failed");	
+			}
+		}
 	@AfterClass
 	public void CloseBrowser() 	{
 		wd.quit();

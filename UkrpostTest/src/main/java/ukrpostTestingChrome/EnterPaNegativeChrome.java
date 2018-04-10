@@ -1,18 +1,23 @@
 package ukrpostTestingChrome;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import library.Utility;
 public class EnterPaNegativeChrome {
 	WebDriver wd;
-	String loginAbraam = "ukrpost@i.ua";
-	String passwordAbraam = "446652";
-    String ukrpostUrl = "http://ukrposhta.ua/";
+	String loginAbraam = Utility.setVariables().getProperty("loginAbraam");
+	String passwordAbraam = Utility.setVariables().getProperty("passwordAbraamIncorrect");
+    String ukrpostUrl = Utility.setVariables().getProperty("mainUrl");
     
    	@BeforeClass (description = "Start Browser")
     public void RunBrowser () {
@@ -40,6 +45,12 @@ public class EnterPaNegativeChrome {
 		wd.findElement(By.xpath("//*[@id=\"login-submit\"]")).click();
 		wd.findElement(By.xpath("//*[@id=\"login-form\"]/div")).getText().equals("Ћог≥н або пароль не в≥рн≥!");
 	}
+	 @AfterMethod 
+	 public void takeScreenShotOnFailure(ITestResult testResult) throws IOException { 
+		if (testResult.getStatus() == ITestResult.FAILURE) { 
+		Utility.CaptureScreenshot(wd, "Negative entering personal account failed");	
+			}
+		}
 	
 	@AfterClass
 	public void CloseBrowser() {
