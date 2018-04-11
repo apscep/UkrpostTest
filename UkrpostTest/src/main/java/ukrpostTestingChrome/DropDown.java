@@ -18,8 +18,6 @@ import org.testng.annotations.Test;
 import library.Utility;
 public class DropDown {
 	WebDriver wd;
-	String loginAbraam = "ukrpost@i.ua";
-	String passwordAbraam = "446655";
 	String ukrpostUrl = Utility.setVariables().getProperty("mainUrl");
    	@BeforeClass (description = "Start Browser")
    	

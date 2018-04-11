@@ -1,135 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="2" failed="1" total="3" passed="0">
+<testng-results skipped="0" failed="0" total="2" passed="2">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="6912" started-at="2018-04-05T12:01:04Z" finished-at="2018-04-05T12:01:11Z">
+  <suite name="Default suite" duration-ms="9113" started-at="2018-04-11T18:44:00Z" finished-at="2018-04-11T18:44:09Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="6912" started-at="2018-04-05T12:01:04Z" finished-at="2018-04-05T12:01:11Z">
-      <class name="ukrpostTestingChrome.EnterPAChrome">
-        <test-method status="PASS" signature="RunBrowser()[pri:0, instance:ukrpostTestingChrome.EnterPAChrome@4c70fda8]" name="RunBrowser" is-config="true" duration-ms="2448" started-at="2018-04-05T15:01:04Z" description="Start Browser" finished-at="2018-04-05T15:01:07Z">
+    <test name="Default test" duration-ms="9113" started-at="2018-04-11T18:44:00Z" finished-at="2018-04-11T18:44:09Z">
+      <class name="ukrpostTestingChrome.CheckCalculatorChrome">
+        <test-method status="PASS" signature="setVariables()[pri:0, instance:ukrpostTestingChrome.CheckCalculatorChrome@d8355a8]" name="setVariables" is-config="true" duration-ms="16" started-at="2018-04-11T21:44:00Z" finished-at="2018-04-11T21:44:00Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setVariables -->
+        <test-method status="PASS" signature="RunBrowser()[pri:0, instance:ukrpostTestingChrome.CheckCalculatorChrome@d8355a8]" name="RunBrowser" is-config="true" duration-ms="2538" started-at="2018-04-11T21:44:00Z" description="Start Browser" finished-at="2018-04-11T21:44:03Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- RunBrowser -->
-        <test-method status="FAIL" signature="Loadsite()[pri:0, instance:ukrpostTestingChrome.EnterPAChrome@4c70fda8]" name="Loadsite" duration-ms="3321" started-at="2018-04-05T15:01:07Z" description="This test will check condition of web site" finished-at="2018-04-05T15:01:10Z">
-          <exception class="java.lang.AssertionError">
-            <message>
-              <![CDATA[expected [https://ukrposhta.ua/login1/] but found [https://ukrposhta.ua/login/]]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: expected [https://ukrposhta.ua/login1/] but found [https://ukrposhta.ua/login/]
-	at org.testng.Assert.fail(Assert.java:94)
-	at org.testng.Assert.failNotEquals(Assert.java:496)
-	at org.testng.Assert.assertEquals(Assert.java:125)
-	at org.testng.Assert.assertEquals(Assert.java:178)
-	at org.testng.Assert.assertEquals(Assert.java:188)
-	at ukrpostTestingChrome.EnterPAChrome.Loadsite(EnterPAChrome.java:39)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
-	at org.testng.TestRunner.privateRun(TestRunner.java:774)
-	at org.testng.TestRunner.run(TestRunner.java:624)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1191)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1116)
-	at org.testng.TestNG.run(TestNG.java:1024)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
+        <test-method status="PASS" signature="Loadsite()[pri:0, instance:ukrpostTestingChrome.CheckCalculatorChrome@d8355a8]" name="Loadsite" duration-ms="5190" started-at="2018-04-11T21:44:03Z" description="This test will check condition of web site" finished-at="2018-04-11T21:44:08Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Loadsite -->
-        <test-method status="PASS" signature="takeScreenShotOnFailure(org.testng.ITestResult)[pri:0, instance:ukrpostTestingChrome.EnterPAChrome@4c70fda8]" name="takeScreenShotOnFailure" is-config="true" duration-ms="350" started-at="2018-04-05T15:01:10Z" finished-at="2018-04-05T15:01:10Z">
+        <test-method status="PASS" signature="takeScreenShotOnFailure(org.testng.ITestResult)[pri:0, instance:ukrpostTestingChrome.CheckCalculatorChrome@d8355a8]" name="takeScreenShotOnFailure" is-config="true" duration-ms="4" started-at="2018-04-11T21:44:08Z" finished-at="2018-04-11T21:44:08Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=Loadsite status=FAILURE method=EnterPAChrome.Loadsite()[pri:0, instance:ukrpostTestingChrome.EnterPAChrome@4c70fda8] output={null}]]]>
+                <![CDATA[[TestResult name=Loadsite status=SUCCESS method=CheckCalculatorChrome.Loadsite()[pri:0, instance:ukrpostTestingChrome.CheckCalculatorChrome@d8355a8] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- takeScreenShotOnFailure -->
-        <test-method status="SKIP" signature="LoginToPa()[pri:0, instance:ukrpostTestingChrome.EnterPAChrome@4c70fda8]" name="LoginToPa" duration-ms="0" started-at="2018-04-05T15:01:10Z" description="This test will login personal account" depends-on-methods="ukrpostTestingChrome.EnterPAChrome.Loadsite" finished-at="2018-04-05T15:01:10Z">
-          <exception class="java.lang.Throwable">
-            <message>
-              <![CDATA[Method EnterPAChrome.LoginToPa()[pri:0, instance:ukrpostTestingChrome.EnterPAChrome@4c70fda8] depends on not successfully finished methods]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.Throwable: Method EnterPAChrome.LoginToPa()[pri:0, instance:ukrpostTestingChrome.EnterPAChrome@4c70fda8] depends on not successfully finished methods
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1033)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
-	at org.testng.TestRunner.privateRun(TestRunner.java:774)
-	at org.testng.TestRunner.run(TestRunner.java:624)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1191)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1116)
-	at org.testng.TestNG.run(TestNG.java:1024)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.Throwable -->
+        <test-method status="PASS" signature="CalculateShipment()[pri:0, instance:ukrpostTestingChrome.CheckCalculatorChrome@d8355a8]" name="CalculateShipment" duration-ms="728" started-at="2018-04-11T21:44:08Z" description="This test will calculate express shipment From Kyiv to Lviv" depends-on-methods="ukrpostTestingChrome.CheckCalculatorChrome.Loadsite" finished-at="2018-04-11T21:44:09Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- LoginToPa -->
-        <test-method status="SKIP" signature="LogoutPa()[pri:0, instance:ukrpostTestingChrome.EnterPAChrome@4c70fda8]" name="LogoutPa" duration-ms="0" started-at="2018-04-05T15:01:10Z" description="This test will log out from personal account" depends-on-methods="ukrpostTestingChrome.EnterPAChrome.LoginToPa" finished-at="2018-04-05T15:01:10Z">
-          <exception class="java.lang.Throwable">
-            <message>
-              <![CDATA[Method EnterPAChrome.LogoutPa()[pri:0, instance:ukrpostTestingChrome.EnterPAChrome@4c70fda8] depends on not successfully finished methods]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.Throwable: Method EnterPAChrome.LogoutPa()[pri:0, instance:ukrpostTestingChrome.EnterPAChrome@4c70fda8] depends on not successfully finished methods
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1033)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
-	at org.testng.TestRunner.privateRun(TestRunner.java:774)
-	at org.testng.TestRunner.run(TestRunner.java:624)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1191)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1116)
-	at org.testng.TestNG.run(TestNG.java:1024)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.Throwable -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- LogoutPa -->
-        <test-method status="PASS" signature="CloseBrowser()[pri:0, instance:ukrpostTestingChrome.EnterPAChrome@4c70fda8]" name="CloseBrowser" is-config="true" duration-ms="780" started-at="2018-04-05T15:01:10Z" finished-at="2018-04-05T15:01:11Z">
+        </test-method> <!-- CalculateShipment -->
+        <test-method status="PASS" signature="CloseBrowser()[pri:0, instance:ukrpostTestingChrome.CheckCalculatorChrome@d8355a8]" name="CloseBrowser" is-config="true" duration-ms="648" started-at="2018-04-11T21:44:09Z" finished-at="2018-04-11T21:44:09Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- CloseBrowser -->
-      </class> <!-- ukrpostTestingChrome.EnterPAChrome -->
+        <test-method status="PASS" signature="takeScreenShotOnFailure(org.testng.ITestResult)[pri:0, instance:ukrpostTestingChrome.CheckCalculatorChrome@d8355a8]" name="takeScreenShotOnFailure" is-config="true" duration-ms="0" started-at="2018-04-11T21:44:09Z" finished-at="2018-04-11T21:44:09Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=CalculateShipment status=SUCCESS method=CheckCalculatorChrome.CalculateShipment()[pri:0, instance:ukrpostTestingChrome.CheckCalculatorChrome@d8355a8] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- takeScreenShotOnFailure -->
+      </class> <!-- ukrpostTestingChrome.CheckCalculatorChrome -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
