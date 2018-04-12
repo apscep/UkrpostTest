@@ -21,7 +21,7 @@ public class EnterPaNegativeChrome {
     
    	@BeforeClass (description = "Start Browser")
     public void RunBrowser () {
-   		System.setProperty("webdriver.chrome.driver", "C:\\dev\\Selenium\\chromedriver.exe");
+   		System.setProperty("webdriver.chrome.driver", "./Drivers/chromedriver.exe");
    		ChromeOptions chromeOptions = new ChromeOptions();
    		chromeOptions.addArguments("--start-maximized");
    		wd = new ChromeDriver(chromeOptions);

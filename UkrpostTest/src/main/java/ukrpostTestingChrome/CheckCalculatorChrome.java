@@ -1,6 +1,11 @@
 package ukrpostTestingChrome;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -11,13 +16,18 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import library.ChromeRunner;
 import library.Utility;
-public class CheckCalculatorChrome extends Utility   {
+public class CheckCalculatorChrome   {
+WebDriver wd;
 	
-	String ukrpostUrl = setVariables().getProperty("mainUrl");
+	String ukrpostUrl = Utility.setVariables().getProperty("mainUrl");
     @BeforeClass (description = "Start Browser")
     public void RunBrowser () {
-    	RunChrome();
+    	ChromeOptions chromeOptions = new ChromeOptions();
+		chromeOptions.addArguments("--start-maximized");
+		wd = new ChromeDriver(chromeOptions);
+		wd.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
 	}
     
 	@Test (description = "This test will check condition of web site")
@@ -63,7 +73,7 @@ public class CheckCalculatorChrome extends Utility   {
 	 @AfterMethod 
 	 public void takeScreenShotOnFailure(ITestResult testResult) throws IOException { 
 		if (testResult.getStatus() == ITestResult.FAILURE) { 
-		CaptureScreenshot(wd, "Calculator failed");	
+		Utility.CaptureScreenshot(wd, "Calculator failed");	
 			}
 		}
 
