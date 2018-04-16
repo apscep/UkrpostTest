@@ -15,7 +15,7 @@ WebDriver wd;
 	public static Properties setVariables () {
   		Properties prop = new Properties();
 		try {
-			FileInputStream fis = new FileInputStream("./src/main/java/library/Variables.properties");
+			FileInputStream fis = new FileInputStream("./src/test/java/library/Variables.properties");
 			prop.load(fis);
  		    }  
 		catch (Exception e) {

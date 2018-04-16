@@ -24,10 +24,11 @@ WebDriver wd;
 	String ukrpostUrl = Utility.setVariables().getProperty("mainUrl");
     @BeforeClass (description = "Start Browser")
     public void RunBrowser () {
-    	ChromeOptions chromeOptions = new ChromeOptions();
-		chromeOptions.addArguments("--start-maximized");
-		wd = new ChromeDriver(chromeOptions);
-		wd.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
+    	System.setProperty("webdriver.chrome.driver", "./Drivers/chromedriver.exe");
+	   		ChromeOptions chromeOptions = new ChromeOptions();
+	   		chromeOptions.addArguments("--start-maximized");
+	   		wd = new ChromeDriver(chromeOptions);
+	   		wd.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
 	}
     
 	@Test (description = "This test will check condition of web site")

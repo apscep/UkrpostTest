@@ -2,53 +2,49 @@
 <testng-results skipped="0" failed="0" total="2" passed="2">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="9113" started-at="2018-04-11T18:44:00Z" finished-at="2018-04-11T18:44:09Z">
+  <suite name="Default suite" duration-ms="8781" started-at="2018-04-16T17:27:14Z" finished-at="2018-04-16T17:27:23Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="9113" started-at="2018-04-11T18:44:00Z" finished-at="2018-04-11T18:44:09Z">
+    <test name="Default test" duration-ms="8781" started-at="2018-04-16T17:27:14Z" finished-at="2018-04-16T17:27:23Z">
       <class name="ukrpostTestingChrome.CheckCalculatorChrome">
-        <test-method status="PASS" signature="setVariables()[pri:0, instance:ukrpostTestingChrome.CheckCalculatorChrome@d8355a8]" name="setVariables" is-config="true" duration-ms="16" started-at="2018-04-11T21:44:00Z" finished-at="2018-04-11T21:44:00Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setVariables -->
-        <test-method status="PASS" signature="RunBrowser()[pri:0, instance:ukrpostTestingChrome.CheckCalculatorChrome@d8355a8]" name="RunBrowser" is-config="true" duration-ms="2538" started-at="2018-04-11T21:44:00Z" description="Start Browser" finished-at="2018-04-11T21:44:03Z">
+        <test-method status="PASS" signature="RunBrowser()[pri:0, instance:ukrpostTestingChrome.CheckCalculatorChrome@14acaea5]" name="RunBrowser" is-config="true" duration-ms="2523" started-at="2018-04-16T20:27:14Z" description="Start Browser" finished-at="2018-04-16T20:27:17Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- RunBrowser -->
-        <test-method status="PASS" signature="Loadsite()[pri:0, instance:ukrpostTestingChrome.CheckCalculatorChrome@d8355a8]" name="Loadsite" duration-ms="5190" started-at="2018-04-11T21:44:03Z" description="This test will check condition of web site" finished-at="2018-04-11T21:44:08Z">
+        <test-method status="PASS" signature="Loadsite()[pri:0, instance:ukrpostTestingChrome.CheckCalculatorChrome@14acaea5]" name="Loadsite" duration-ms="4688" started-at="2018-04-16T20:27:17Z" description="This test will check condition of web site" finished-at="2018-04-16T20:27:21Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Loadsite -->
-        <test-method status="PASS" signature="takeScreenShotOnFailure(org.testng.ITestResult)[pri:0, instance:ukrpostTestingChrome.CheckCalculatorChrome@d8355a8]" name="takeScreenShotOnFailure" is-config="true" duration-ms="4" started-at="2018-04-11T21:44:08Z" finished-at="2018-04-11T21:44:08Z">
+        <test-method status="PASS" signature="takeScreenShotOnFailure(org.testng.ITestResult)[pri:0, instance:ukrpostTestingChrome.CheckCalculatorChrome@14acaea5]" name="takeScreenShotOnFailure" is-config="true" duration-ms="1" started-at="2018-04-16T20:27:21Z" finished-at="2018-04-16T20:27:21Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=Loadsite status=SUCCESS method=CheckCalculatorChrome.Loadsite()[pri:0, instance:ukrpostTestingChrome.CheckCalculatorChrome@d8355a8] output={null}]]]>
+                <![CDATA[[TestResult name=Loadsite status=SUCCESS method=CheckCalculatorChrome.Loadsite()[pri:0, instance:ukrpostTestingChrome.CheckCalculatorChrome@14acaea5] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- takeScreenShotOnFailure -->
-        <test-method status="PASS" signature="CalculateShipment()[pri:0, instance:ukrpostTestingChrome.CheckCalculatorChrome@d8355a8]" name="CalculateShipment" duration-ms="728" started-at="2018-04-11T21:44:08Z" description="This test will calculate express shipment From Kyiv to Lviv" depends-on-methods="ukrpostTestingChrome.CheckCalculatorChrome.Loadsite" finished-at="2018-04-11T21:44:09Z">
+        <test-method status="PASS" signature="CalculateShipment()[pri:0, instance:ukrpostTestingChrome.CheckCalculatorChrome@14acaea5]" name="CalculateShipment" duration-ms="782" started-at="2018-04-16T20:27:21Z" description="This test will calculate express shipment From Kyiv to Lviv" depends-on-methods="ukrpostTestingChrome.CheckCalculatorChrome.Loadsite" finished-at="2018-04-16T20:27:22Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- CalculateShipment -->
-        <test-method status="PASS" signature="CloseBrowser()[pri:0, instance:ukrpostTestingChrome.CheckCalculatorChrome@d8355a8]" name="CloseBrowser" is-config="true" duration-ms="648" started-at="2018-04-11T21:44:09Z" finished-at="2018-04-11T21:44:09Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- CloseBrowser -->
-        <test-method status="PASS" signature="takeScreenShotOnFailure(org.testng.ITestResult)[pri:0, instance:ukrpostTestingChrome.CheckCalculatorChrome@d8355a8]" name="takeScreenShotOnFailure" is-config="true" duration-ms="0" started-at="2018-04-11T21:44:09Z" finished-at="2018-04-11T21:44:09Z">
+        <test-method status="PASS" signature="takeScreenShotOnFailure(org.testng.ITestResult)[pri:0, instance:ukrpostTestingChrome.CheckCalculatorChrome@14acaea5]" name="takeScreenShotOnFailure" is-config="true" duration-ms="0" started-at="2018-04-16T20:27:22Z" finished-at="2018-04-16T20:27:22Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=CalculateShipment status=SUCCESS method=CheckCalculatorChrome.CalculateShipment()[pri:0, instance:ukrpostTestingChrome.CheckCalculatorChrome@d8355a8] output={null}]]]>
+                <![CDATA[[TestResult name=CalculateShipment status=SUCCESS method=CheckCalculatorChrome.CalculateShipment()[pri:0, instance:ukrpostTestingChrome.CheckCalculatorChrome@14acaea5] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- takeScreenShotOnFailure -->
+        <test-method status="PASS" signature="CloseBrowser()[pri:0, instance:ukrpostTestingChrome.CheckCalculatorChrome@14acaea5]" name="CloseBrowser" is-config="true" duration-ms="767" started-at="2018-04-16T20:27:22Z" finished-at="2018-04-16T20:27:23Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CloseBrowser -->
       </class> <!-- ukrpostTestingChrome.CheckCalculatorChrome -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
