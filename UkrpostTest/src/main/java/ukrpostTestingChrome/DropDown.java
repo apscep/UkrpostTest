@@ -4,7 +4,8 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -18,17 +19,17 @@ import org.testng.annotations.Test;
 import library.Utility;
 public class DropDown {
 	WebDriver wd;
-	String loginAbraam = "ukrpost@i.ua";
-	String passwordAbraam = "446655";
 	String ukrpostUrl = Utility.setVariables().getProperty("mainUrl");
    	@BeforeClass (description = "Start Browser")
    	
     public void RunBrowser () {
-   		System.setProperty("webdriver.gecko.driver", "C:\\dev\\Selenium\\geckodriver.exe");
-   		wd = new FirefoxDriver();
-   		wd.manage().window().maximize();
-   		wd.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
-	}
+   	    	System.setProperty("webdriver.chrome.driver", "./Drivers/chromedriver.exe");
+   	   		ChromeOptions chromeOptions = new ChromeOptions();
+   	   		chromeOptions.addArguments("--start-maximized");
+   	   		wd = new ChromeDriver(chromeOptions);
+   	   		wd.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
+   		}
+	
    	
 	@Test (description = "This test will check condition of web site")
 		public void Loadsite ()	{

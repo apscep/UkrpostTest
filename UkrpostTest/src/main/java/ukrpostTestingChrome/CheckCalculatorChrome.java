@@ -1,6 +1,7 @@
 package ukrpostTestingChrome;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -15,19 +16,18 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import library.ChromeRunner;
 import library.Utility;
-public class CheckCalculatorChrome    {
-
-	WebDriver wd;
+public class CheckCalculatorChrome   {
+WebDriver wd;
+	
 	String ukrpostUrl = Utility.setVariables().getProperty("mainUrl");
-    
     @BeforeClass (description = "Start Browser")
     public void RunBrowser () {
-    	System.setProperty("webdriver.chrome.driver", "C:\\dev\\Selenium\\chromedriver.exe");
     	ChromeOptions chromeOptions = new ChromeOptions();
-    	chromeOptions.addArguments("--start-maximized");
-    	wd = new ChromeDriver(chromeOptions);
-    	wd.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
+		chromeOptions.addArguments("--start-maximized");
+		wd = new ChromeDriver(chromeOptions);
+		wd.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
 	}
     
 	@Test (description = "This test will check condition of web site")

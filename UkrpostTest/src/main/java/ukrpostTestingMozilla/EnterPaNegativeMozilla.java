@@ -20,7 +20,7 @@ public class EnterPaNegativeMozilla {
     
  	@BeforeClass (description = "Start Browser") 
     public void RunBrowser () {
- 		System.setProperty("webdriver.gecko.driver", "C:\\dev\\Selenium\\geckodriver.exe");
+ 		System.setProperty("webdriver.gecko.driver", "./Drivers/chromedriver.exe");
  		wd = new FirefoxDriver();
  		wd.manage().window().maximize();
  		wd.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
