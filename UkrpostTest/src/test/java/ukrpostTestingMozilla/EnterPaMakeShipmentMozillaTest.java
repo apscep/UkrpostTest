@@ -13,7 +13,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import library.Utility;
-public class EnterPaMakeShipmentMozilla {
+public class EnterPaMakeShipmentMozillaTest {
 	WebDriver wd;
 	String loginAbraam = Utility.setVariables().getProperty("loginAbraam");
 	String passwordAbraam = Utility.setVariables().getProperty("passwordAbraam");
