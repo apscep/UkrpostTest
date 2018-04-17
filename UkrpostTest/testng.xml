@@ -3,16 +3,16 @@
 <suite name="Suite">
   <test name="Test">
     <classes>
-      <class name="ukrpostTestingMozilla.CheckCalculatorMozila"/>
-      <class name="ukrpostTestingChrome.EnterPaNegativeChrome"/>
-      <class name="ukrpostTestingMozilla.EnterPaMakeShipmentMozilla"/>
-      <class name="ukrpostTestingChrome.EnterPAChrome"/>
-      <class name="ukrpostTestingChrome.EnterPaMakeShipmentChrome"/>
-      <class name="ukrpostTestingChrome.EnterPaFillShipmentDataChrome"/>
-      <class name="ukrpostTestingChrome.DropDown"/>
-      <class name="ukrpostTestingMozilla.EnterPaMozilla"/>
-      <class name="ukrpostTestingChrome.CheckCalculatorChrome"/>
-      <class name="ukrpostTestingMozilla.EnterPaNegativeMozilla"/>
+      <class name="ukrpostTestingChrome.EnterPaNegativeChromeTest"/>
+      <class name="ukrpostTestingMozilla.EnterPaMakeShipmentMozillaTest"/>
+      <class name="ukrpostTestingMozilla.EnterPaMozillaTest"/>
+      <class name="ukrpostTestingChrome.EnterPaMakeShipmentChromeTest"/>
+      <class name="ukrpostTestingChrome.EnterPAChromeTest"/>
+      <class name="ukrpostTestingChrome.DropDownTest"/>
+      <class name="ukrpostTestingChrome.CheckCalculatorChromeTest"/>
+      <class name="ukrpostTestingMozilla.CheckCalculatorMozilaTest"/>
+      <class name="ukrpostTestingChrome.EnterPaFillShipmentDataTest"/>
+      <class name="ukrpostTestingMozilla.EnterPaNegativeMozillaTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

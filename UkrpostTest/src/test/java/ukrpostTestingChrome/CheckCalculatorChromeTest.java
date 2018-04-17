@@ -1,11 +1,7 @@
 package ukrpostTestingChrome;
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -13,32 +9,23 @@ import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import library.ChromeRunner;
 import library.Utility;
-public class CheckCalculatorChrome   {
-WebDriver wd;
+public class CheckCalculatorChromeTest   {
 	
-	String ukrpostUrl = Utility.setVariables().getProperty("mainUrl");
-    @BeforeClass (description = "Start Browser")
-    public void RunBrowser () {
-    	System.setProperty("webdriver.chrome.driver", "./Drivers/chromedriver.exe");
-	   		ChromeOptions chromeOptions = new ChromeOptions();
-	   		chromeOptions.addArguments("--start-maximized");
-	   		wd = new ChromeDriver(chromeOptions);
-	   		wd.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
-	}
-    
+WebDriver wd = ChromeRunner.SetChromeDriver();
+String ukrpostUrl = Utility.setVariables().getProperty("mainUrl");
+  
 	@Test (description = "This test will check condition of web site")
 	public void Loadsite ()	{
 		wd.get(ukrpostUrl);	
 		String currentUrl = wd.getCurrentUrl();
-		Assert.assertEquals(currentUrl, "http://ukrposhta.ua/");
+		Assert.assertTrue(currentUrl.matches("^(http|https)://ukrposhta.ua/"));
 		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[3]/div/div/div[1]/a[1]")).click();
 		String currentUrl2 = wd.getCurrentUrl();
-		Assert.assertEquals(currentUrl2, "https://ukrposhta.ua/kalkulyator-forma-rozraxunku/");
+		Assert.assertTrue(currentUrl2.matches("^(http|https)://ukrposhta.ua/login/"));
 	}
 	
 	@Test (dependsOnMethods="Loadsite", description = "This test will calculate express shipment From Kyiv to Lviv")
