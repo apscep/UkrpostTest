@@ -12,7 +12,7 @@ import library.ChromeRunner;
 import library.Utility;
 public class EnterPaNegativeChromeTest {
 	
-	WebDriver wd = ChromeRunner.SetChromeDriver();
+	WebDriver wd = ChromeRunner.setChromeDriver();
 	String loginAbraam = Utility.setVariables().getProperty("loginAbraam");
 	String passwordAbraam = Utility.setVariables().getProperty("passwordAbraamIncorrect");
     String ukrpostUrl = Utility.setVariables().getProperty("mainUrl");     
