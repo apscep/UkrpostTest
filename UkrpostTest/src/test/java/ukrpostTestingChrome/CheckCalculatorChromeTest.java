@@ -10,14 +10,14 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-
 import library.ChromeRunner;
 import library.Utility;
 public class CheckCalculatorChromeTest   {
 	
-WebDriver wd = ChromeRunner.SetChromeDriver();
+WebDriver wd = ChromeRunner.setChromeDriver();
 String ukrpostUrl = Utility.setVariables().getProperty("mainUrl");
-  
+
+
 	@Test (description = "This test will check condition of web site")
 	public void Loadsite ()	{
 		wd.get(ukrpostUrl);	
@@ -25,7 +25,7 @@ String ukrpostUrl = Utility.setVariables().getProperty("mainUrl");
 		Assert.assertTrue(currentUrl.matches("^(http|https)://ukrposhta.ua/"));
 		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[3]/div/div/div[1]/a[1]")).click();
 		String currentUrl2 = wd.getCurrentUrl();
-		Assert.assertTrue(currentUrl2.matches("^(http|https)://ukrposhta.ua/login/"));
+		Assert.assertTrue(currentUrl2.matches("^(http|https)://ukrposhta.ua/kalkulyator-forma-rozraxunku/"));
 	}
 	
 	@Test (dependsOnMethods="Loadsite", description = "This test will calculate express shipment From Kyiv to Lviv")

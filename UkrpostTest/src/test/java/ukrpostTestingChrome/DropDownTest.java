@@ -15,7 +15,7 @@ import library.ChromeRunner;
 import library.Utility;
 public class DropDownTest {
 	
-	WebDriver wd = ChromeRunner.SetChromeDriver();
+	WebDriver wd = ChromeRunner.setChromeDriver();
 	String ukrpostUrl = Utility.setVariables().getProperty("mainUrl"); 
 	
 	@Test (description = "This test will check condition of web site")

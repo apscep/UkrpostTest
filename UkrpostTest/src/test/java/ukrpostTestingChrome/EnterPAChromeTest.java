@@ -11,7 +11,7 @@ import library.ChromeRunner;
 import library.Utility;
 public class EnterPAChromeTest  {
 	
-	WebDriver wd = ChromeRunner.SetChromeDriver();
+	WebDriver wd = ChromeRunner.setChromeDriver();
 	String loginAbraam = Utility.setVariables().getProperty("loginAbraam");
 	String passwordAbraam = Utility.setVariables().getProperty("passwordAbraam");
     String ukrpostUrl = Utility.setVariables().getProperty("mainUrl");
