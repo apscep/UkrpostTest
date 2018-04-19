@@ -1,41 +1,30 @@
 package ukrpostTestingChrome;
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
+import library.ChromeRunner;
 import library.Utility;
-public class EnterPAChrome  {
-	WebDriver wd;
-	String loginAbraam = Utility.setVariables().getProperty("loginAbraam");
-	String passwordAbraam = Utility.setVariables().getProperty("passwordAbraam");
-    String ukrpostUrl = Utility.setVariables().getProperty("mainUrl");
-   	@BeforeClass (description = "Start Browser")
-   		public void RunBrowser () {
-    	System.setProperty("webdriver.chrome.driver", "./Drivers/chromedriver.exe");
-   		ChromeOptions chromeOptions = new ChromeOptions();
-   		chromeOptions.addArguments("--start-maximized");
-   		wd = new ChromeDriver(chromeOptions);
-   		wd.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
-	}
+public class EnterPAChromeTest  {
+	
+	WebDriver wd = ChromeRunner.setChromeDriver();
+	String loginAbraam = Utility.getVariables().getProperty("loginAbraam");
+	String passwordAbraam = Utility.getVariables().getProperty("passwordAbraam");
+    String ukrpostUrl = Utility.getVariables().getProperty("mainUrl");
    	
-	@Test (description = "This test will check condition of web site")
+   	@Test (description = "This test will check condition of web site")
 	public void Loadsite () {
 		wd.get(ukrpostUrl);	
 		String currentUrl = wd.getCurrentUrl();
-		Assert.assertEquals(currentUrl, "http://ukrposhta.ua/");
+		Assert.assertTrue(currentUrl.matches("^(http|https)://ukrposhta.ua/"));
 		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[1]/div/ul/li[6]/a")).click();
 		String currentUrl2 = wd.getCurrentUrl();
-		Assert.assertEquals(currentUrl2, "https://ukrposhta.ua/login/");
-	}
+		Assert.assertTrue(currentUrl2.matches("^(http|https)://ukrposhta.ua/login/"));
+		}
 	
 	@Test (dependsOnMethods="Loadsite", description = "This test will login personal account")
 	public void LoginToPa() {

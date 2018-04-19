@@ -1,42 +1,33 @@
 package ukrpostTestingMozilla;
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import library.MozillaRunner;
 import library.Utility;
-public class EnterPaMakeShipmentMozilla {
-	WebDriver wd;
-	String loginAbraam = Utility.setVariables().getProperty("loginAbraam");
-	String passwordAbraam = Utility.setVariables().getProperty("passwordAbraam");
-    String ukrpostUrl = Utility.setVariables().getProperty("mainUrl");
-    
-    @BeforeClass (description = "Start Browser")
-    	public void RunBrowser ()  {
-    	System.setProperty("webdriver.gecko.driver", "./Drivers/chromedriver.exe");
-    	wd = new FirefoxDriver();
-    	wd.manage().window().maximize();
-    	wd.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
-	}
-    
-	@Test (description = "This test will check condition of web site")
+public class EnterPaMakeShipmentMozillaTest {
+	WebDriver wd =  MozillaRunner.setMozillaDriver();
+	String loginAbraam = Utility.getVariables().getProperty("loginAbraam");
+	String passwordAbraam = Utility.getVariables().getProperty("passwordAbraam");
+    String ukrpostUrl = Utility.getVariables().getProperty("mainUrl");
+ 
+     
+    @Test (description = "This test will check condition of web site")
 	public void Loadsite () {
 		wd.get(ukrpostUrl);	
 		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[1]/div/ul/li[6]/a")).click();
-		String currentUrl2 = wd.getCurrentUrl();
-		Assert.assertEquals(currentUrl2, "https://ukrposhta.ua/login/");
+		String currentUrl = wd.getCurrentUrl();
+		Assert.assertTrue(currentUrl.matches("^(http|https)://ukrposhta.ua/login/"));
 	}
 	
 	@Test (dependsOnMethods="Loadsite", description = "This test will login personal account")
-	public void LoginToPa() {
+	public void LoginToPa()	{
 		wd.findElement(By.xpath("//*[@id=\"login-form\"]/form/div[1]/div/input")).sendKeys(loginAbraam);
 		wd.findElement(By.xpath(".//*[@id=\"login-form\"]/form/div[2]/div/input")).sendKeys(passwordAbraam);
 		wd.findElement(By.xpath("//*[@id=\"login-submit\"]")).click();
@@ -44,18 +35,19 @@ public class EnterPaMakeShipmentMozilla {
 	}
 	
 	@Test (dependsOnMethods="LoginToPa", description = "Test to create shipment Group")
-	public void CreateShipmentGroup () throws InterruptedException 	{
+	public void CreateShipmentGroup () throws InterruptedException {
 		Thread.sleep(3000);
-		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div[1]/div[1]/div/div[2]/div/button")).click();
+		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div[1]/div[2]/div/div[2]/div/button")).click();
 		Assert.assertTrue(wd.findElement(By.cssSelector("input[name='shipmentgroupname']")).isDisplayed());
 		wd.findElement(By.cssSelector("input[name='shipmentgroupname']")).sendKeys("FirstGroup");
-		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div[1]/div[1]/div/div[3]/div/button")).click();
-		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div[1]/div[2]/div/div[2]/div/button")).click();
+		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div[1]/div[2]/div/div[3]/div/button")).click();
+		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div[1]/div[3]/div/div[2]/div/button")).click();
+		Thread.sleep(2000);
 		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div/form/fieldset/div[1]/div/h3")).getText().equals("Реєстрація нового відправлення");
 	}
 	
 	@Test (dependsOnMethods="CreateShipmentGroup", description = "Test to create shipment")
-	public void CreateShipment ()	{
+	public void CreateShipment () {
 		wd.findElement(By.cssSelector("input[id='dropOffPostcode']")).sendKeys("04080");
 		wd.findElement(By.cssSelector("input[id='surname']")).sendKeys("Іванов");
 		wd.findElement(By.cssSelector("input[id='name']")).sendKeys("Іван");
@@ -85,7 +77,7 @@ public class EnterPaMakeShipmentMozilla {
 	}
 	
 	@Test (dependsOnMethods="CreateShipment", description = "Test to check crreated shipment data")
-	public void CheckShipmentData ()  {
+	public void CheckShipmentData () {
 		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div[2]/div/div[1]/table/tbody/tr/td[7]/button/i")).click();
 		String actualShipmentStatus =  wd.findElement(By.xpath("//*[@class='modal fade ng-scope in']/div/div/div[2]/table/tbody/tr[2]/td")).getText();
 		// Check shipment status and price
@@ -99,8 +91,10 @@ public class EnterPaMakeShipmentMozilla {
 		Utility.CaptureScreenshot(wd, "Registering shipment failed");	
 			}
 		}
+	
 	@AfterClass
-	public void CloseBrowser()	{
+	public void CloseBrowser() {
 		wd.quit();
 	}
 }
+
