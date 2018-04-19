@@ -19,7 +19,7 @@ public class EnterPaFillShipmentDataTest {
 		wd.get(ukrpostUrl);	
 		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[1]/div/ul/li[6]/a")).click();
 		String currentUrl = wd.getCurrentUrl();
-		Assert.assertTrue(currentUrl.matches("^(http|https)://ukrposhta.ua/"));
+		Assert.assertTrue(currentUrl.matches("^(http|https)://ukrposhta.ua/login/"));
 	}
 	
 	@Test (dependsOnMethods="Loadsite", description = "This test will login personal account")
@@ -69,17 +69,10 @@ public class EnterPaFillShipmentDataTest {
 		//Check checkBox  is selected
 		Assert.assertTrue( wd.findElement(By.id("recommended")).isSelected());
 		Assert.assertTrue( wd.findElement(By.id("sms")).isSelected());
-		wd.findElement(By.cssSelector("button[id='submit-button']")).click();	
+	
 	}
 	
-	@Test (dependsOnMethods="CreateShipment", description = "Test to check crreated shipment data")
-	public void CheckShipmentData () {
-		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div[2]/div/div[1]/table/tbody/tr/td[7]/button/i")).click();
-		String actualShipmentStatus =  wd.findElement(By.xpath("//*[@class='modal fade ng-scope in']/div/div/div[2]/table/tbody/tr[2]/td")).getText();
-		// Check shipment status and price
-		Assert.assertEquals(actualShipmentStatus, "Створене");
-		String actualShipmentPrice =  wd.findElement(By.xpath("//*[@class='modal fade ng-scope in']/div/div/div[2]/table/tbody/tr[10]/td/div/div")).getText();
-		Assert.assertEquals(actualShipmentPrice, "63.9грн., знижка 5% врахована");
+
 	}
 	
-}
+
