@@ -1,40 +1,30 @@
 package ukrpostTestingMozilla;
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import library.MozillaRunner;
 import library.Utility;
 public class EnterPaNegativeMozillaTest {
-	WebDriver wd;
+	WebDriver wd =  MozillaRunner.setMozillaDriver();
 	String loginAbraam = Utility.getVariables().getProperty("loginAbraam");
-	String passwordAbraam = Utility.getVariables().getProperty("passwordAbraam");
+	String passwordAbraam = Utility.getVariables().getProperty("passwordAbraamIncorrect");
     String ukrpostUrl = Utility.getVariables().getProperty("mainUrl");
-    
- 	@BeforeClass (description = "Start Browser") 
-    public void RunBrowser () {
- 		System.setProperty("webdriver.gecko.driver", "./Drivers/chromedriver.exe");
- 		wd = new FirefoxDriver();
- 		wd.manage().window().maximize();
- 		wd.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
-	}
- 	
+   	
 	@Test (description = "This test will check condition of web site")
 	public void Loadsite () {
 		wd.get(ukrpostUrl);	
 		String currentUrl = wd.getCurrentUrl();
-		Assert.assertEquals(currentUrl, "http://ukrposhta.ua/");
+		Assert.assertTrue(currentUrl.matches("^(http|https)://ukrposhta.ua/"));
 		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[1]/div/ul/li[6]/a")).click();
 		String currentUrl2 = wd.getCurrentUrl();
-		Assert.assertEquals(currentUrl2, "https://ukrposhta.ua/login/");
-	}
+		Assert.assertTrue(currentUrl2.matches("^(http|https)://ukrposhta.ua/login/"));
+		}
 	
 	@Test (dependsOnMethods="Loadsite", description = "This test will login personal account")
 	public void LoginToPa() {
