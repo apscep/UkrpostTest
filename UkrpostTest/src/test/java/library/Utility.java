@@ -12,7 +12,7 @@ public class Utility {
 WebDriver wd;
 
 	@BeforeSuite
-	public static Properties setVariables () {
+	public static Properties getVariables () {
   		Properties prop = new Properties();
 		try {
 			FileInputStream fis = new FileInputStream("./src/test/java/library/Variables.properties");

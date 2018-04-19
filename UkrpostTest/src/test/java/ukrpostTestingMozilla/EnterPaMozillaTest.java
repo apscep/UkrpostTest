@@ -15,9 +15,9 @@ import library.Utility;
 
 public class EnterPaMozillaTest {
 	WebDriver wd;
-	String loginAbraam = Utility.setVariables().getProperty("loginAbraam");
-	String passwordAbraam = Utility.setVariables().getProperty("passwordAbraam");
-    String ukrpostUrl = Utility.setVariables().getProperty("mainUrl");
+	String loginAbraam = Utility.getVariables().getProperty("loginAbraam");
+	String passwordAbraam = Utility.getVariables().getProperty("passwordAbraam");
+    String ukrpostUrl = Utility.getVariables().getProperty("mainUrl");
     
    	@BeforeClass (description = "Start Browser")
     public void RunBrowser () {

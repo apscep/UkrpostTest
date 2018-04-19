@@ -15,7 +15,7 @@ import library.Utility;
 public class CheckCalculatorChromeTest   {
 	
 WebDriver wd = ChromeRunner.setChromeDriver();
-String ukrpostUrl = Utility.setVariables().getProperty("mainUrl");
+String ukrpostUrl = Utility.getVariables().getProperty("mainUrl");
 
 
 	@Test (description = "This test will check condition of web site")
