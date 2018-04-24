@@ -10,9 +10,9 @@ import library.Utility;
 public class EnterPaFillShipmentDataTest {
 	
 	WebDriver wd = ChromeRunner.setChromeDriver();
-	String loginAbraam = Utility.setVariables().getProperty("loginAbraam");
-	String passwordAbraam = Utility.setVariables().getProperty("passwordAbraam");
-    String ukrpostUrl = Utility.setVariables().getProperty("mainUrl");
+	String loginAbraam = Utility.getVariables().getProperty("loginAbraam");
+	String passwordAbraam = Utility.getVariables().getProperty("passwordAbraam");
+    String ukrpostUrl = Utility.getVariables().getProperty("mainUrl");
        
 	@Test (description = "This test will check condition of web site")
 	public void Loadsite () {
