@@ -56,7 +56,9 @@ String ukrpostUrl = Utility.getVariables().getProperty("mainUrl");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("result")));
 		Assert.assertTrue(wd.findElement(By.id("result")).isDisplayed());
 		//Validate Shipment price Expected - 48
+		Utility.log.debug("Checking price");
 		Assert.assertEquals(wd.findElement(By.xpath("//*[@id=\"sum_result\"]")).getText(), "Загальна сума: 48 грн.");
+		Utility.log.error("Expected price is not present");
 		}
 	 @AfterMethod 
 	 public void takeScreenShotOnFailure(ITestResult testResult) throws IOException { 
