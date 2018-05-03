@@ -58,6 +58,7 @@ MainPage mp = new MainPage(wd);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("result")));
 		Assert.assertTrue(wd.findElement(By.id("result")).isDisplayed());
 		//Validate Shipment price Expected - 48
+		Assert.assertEquals(wd.findElement(By.xpath("//*[@id=\"sum_result\"]")).getText(), "Загальна сума: 49 грн.");
 
 		}
 	 @AfterMethod 

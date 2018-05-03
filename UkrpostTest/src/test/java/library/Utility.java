@@ -2,6 +2,8 @@ package library;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Properties;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -24,12 +26,13 @@ WebDriver wd;
 		return prop;
 	}
 	 
-	public static void CaptureScreenshot (WebDriver wd, String screenshotName) 
-	{
-		try {
+	public static void CaptureScreenshot (WebDriver wd, String screenshotName) 	{
+       
+			try {
 			TakesScreenshot ts = (TakesScreenshot)wd;
 			File source = ts.getScreenshotAs(OutputType.FILE);
-			FileUtils.copyFile(source, new File("./Screenshot/"+ screenshotName+".png"));
+			String time =  new SimpleDateFormat("yyyyMMddhhmmss'.txt'").format(new Date());
+			FileUtils.copyFile(source, new File("./Screenshot/"+ screenshotName +time+".png"));
 			System.out.println("Screnshot taken");
 		    } 
 		catch (Exception e) {
