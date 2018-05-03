@@ -12,8 +12,9 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import library.MozillaRunner;
 import library.Utility;
+
 public class CheckCalculatorMozilaTest {
-	WebDriver wd =  MozillaRunner.setMozillaDriver();
+	WebDriver wd = MozillaRunner.setMozillaDriver();
 	String ukrpostUrl = Utility.getVariables().getProperty("mainUrl");
 	
    	@Test (description = "This test will check condition of web site")

@@ -13,7 +13,7 @@ public class ChromeRunner {
 		ChromeOptions chromeOptions = new ChromeOptions();
 	   	chromeOptions.addArguments("--start-maximized");
 	   	wd = new ChromeDriver(chromeOptions);
-	   	wd.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
+	   	wd.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		return wd;
 	 	 }
 	
