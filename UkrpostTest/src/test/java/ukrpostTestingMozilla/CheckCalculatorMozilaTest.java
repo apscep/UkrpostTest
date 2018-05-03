@@ -12,17 +12,19 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import library.MozillaRunner;
 import library.Utility;
+import objectRepository.MainPage;
 
 public class CheckCalculatorMozilaTest {
 	WebDriver wd = MozillaRunner.setMozillaDriver();
 	String ukrpostUrl = Utility.getVariables().getProperty("mainUrl");
+	MainPage mp = new MainPage(wd);
 	
    	@Test (description = "This test will check condition of web site")
 	public void Loadsite () {
 		wd.get(ukrpostUrl);	
 		String currentUrl = wd.getCurrentUrl();
 		Assert.assertTrue(currentUrl.matches("^(http|https)://ukrposhta.ua/"));
-		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[3]/div/div/div[1]/a[1]")).click();
+		mp.calculatorId().click();
 		String currentUrl2 = wd.getCurrentUrl();
 		Assert.assertTrue(currentUrl2.matches("^(http|https)://ukrposhta.ua/kalkulyator-forma-rozraxunku/"));
 	}

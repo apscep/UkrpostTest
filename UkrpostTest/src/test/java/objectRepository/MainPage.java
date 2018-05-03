@@ -10,11 +10,15 @@ public class MainPage {
 			this.wd = wd; 
  }
  
- By calculator = By.xpath("//*[@id=\"main-wrap\"]/div[3]/div/div/div[1]/a[1]");	
+ By calculator = By.xpath("//*[@id=\"main-wrap\"]/div[3]/div/div/div[1]/a[1]");
+ By personalAccount = By.xpath("//*[@id=\"main-wrap\"]/div[1]/div/ul/li[6]/a");	
  
  public WebElement calculatorId() {
 	return wd.findElement(calculator);
   }
 	
+ public WebElement personalAccountId() {
+		return wd.findElement(personalAccount);
+	  }
 	
 }

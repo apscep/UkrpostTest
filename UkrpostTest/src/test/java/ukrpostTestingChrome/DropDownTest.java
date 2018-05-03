@@ -17,7 +17,9 @@ public class DropDownTest {
 	
 	WebDriver wd = ChromeRunner.setChromeDriver();
 	String ukrpostUrl = Utility.getVariables().getProperty("mainUrl"); 
-	
+
+
+    
 	@Test (description = "This test will check condition of web site")
 		public void Loadsite ()	{
 		wd.get(ukrpostUrl);	
@@ -29,7 +31,6 @@ public class DropDownTest {
 		public void CheckElement () {
 		Actions a = new Actions(wd);
 		WebElement xpath1  = wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/header/div/nav/ul/li[1]/a"));
-		//WebElement xpath2  = wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/header/div/nav/ul/li[1]/ul/li[5]/a"));
 		a.moveToElement(xpath1).build().perform();
 		WebDriverWait wait = new WebDriverWait(wd,5); 
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"main-wrap\"]/header/div/nav/ul/li[1]/ul/li[5]/a")));

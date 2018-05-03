@@ -10,18 +10,18 @@ import org.testng.annotations.Test;
 
 import library.MozillaRunner;
 import library.Utility;
+import objectRepository.MainPage;
 public class EnterPaNegativeMozillaTest {
 	WebDriver wd =  MozillaRunner.setMozillaDriver();
 	String loginAbraam = Utility.getVariables().getProperty("loginAbraam");
 	String passwordAbraam = Utility.getVariables().getProperty("passwordAbraamIncorrect");
     String ukrpostUrl = Utility.getVariables().getProperty("mainUrl");
-   	
-	@Test (description = "This test will check condition of web site")
+    MainPage mp = new MainPage(wd);
+   
+     @Test (description = "This test will check condition of web site")
 	public void Loadsite () {
 		wd.get(ukrpostUrl);	
-		String currentUrl = wd.getCurrentUrl();
-		Assert.assertTrue(currentUrl.matches("^(http|https)://ukrposhta.ua/"));
-		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[1]/div/ul/li[6]/a")).click();
+		mp.personalAccountId().click();
 		String currentUrl2 = wd.getCurrentUrl();
 		Assert.assertTrue(currentUrl2.matches("^(http|https)://ukrposhta.ua/login/"));
 		}

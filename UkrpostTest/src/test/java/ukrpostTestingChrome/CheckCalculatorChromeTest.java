@@ -19,6 +19,7 @@ WebDriver wd = ChromeRunner.setChromeDriver();
 String ukrpostUrl = Utility.getVariables().getProperty("mainUrl");
 MainPage mp = new MainPage(wd);
 
+
 	@Test (description = "This test will check condition of web site")
 	public void Loadsite ()	{
 	

@@ -10,18 +10,21 @@ import org.testng.annotations.Test;
 
 import library.MozillaRunner;
 import library.Utility;
+import objectRepository.LoginPage;
+import objectRepository.MainPage;
 
 public class EnterPaMozillaTest {
 	WebDriver wd =  MozillaRunner.setMozillaDriver();
 	String loginAbraam = Utility.getVariables().getProperty("loginAbraam");
 	String passwordAbraam = Utility.getVariables().getProperty("passwordAbraam");
     String ukrpostUrl = Utility.getVariables().getProperty("mainUrl");
-    	
-	@Test (description = "This test will check condition of web site")
+    MainPage mp = new MainPage(wd);
+    LoginPage lp = new LoginPage(wd);
+    
+    @Test (description = "This test will check condition of web site")
 	public void Loadsite () {
 		wd.get(ukrpostUrl);	
-		String currentUrl = wd.getCurrentUrl();
-		Assert.assertTrue(currentUrl.matches("^(http|https)://ukrposhta.ua/"));
+		mp.personalAccountId().click();
 		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[1]/div/ul/li[6]/a")).click();
 		String currentUrl2 = wd.getCurrentUrl();
 		Assert.assertTrue(currentUrl2.matches("^(http|https)://ukrposhta.ua/login/"));
@@ -29,9 +32,9 @@ public class EnterPaMozillaTest {
 	
 	@Test (dependsOnMethods="Loadsite", description = "This test will login personal account")
 	public void LoginToPa() {
-		wd.findElement(By.xpath("//*[@id=\"login-form\"]/form/div[1]/div/input")).sendKeys(loginAbraam);
-		wd.findElement(By.xpath(".//*[@id=\"login-form\"]/form/div[2]/div/input")).sendKeys(passwordAbraam);
-		wd.findElement(By.xpath("//*[@id=\"login-submit\"]")).click();
+		lp.inputLoginId().sendKeys(loginAbraam);
+		lp.inputPasswordId().sendKeys(passwordAbraam);
+		lp.submitButtonId().click();
 		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[1]/h3")).getText().equals("Особистий кабінет");
 	}
 	
