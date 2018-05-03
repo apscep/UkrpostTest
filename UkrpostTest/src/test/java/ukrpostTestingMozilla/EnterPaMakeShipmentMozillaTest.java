@@ -2,7 +2,9 @@ package ukrpostTestingMozilla;
 import java.io.IOException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
@@ -13,6 +15,7 @@ import library.MozillaRunner;
 import library.Utility;
 public class EnterPaMakeShipmentMozillaTest {
 	WebDriver wd =  MozillaRunner.setMozillaDriver();
+	WebDriverWait wait = new WebDriverWait(wd, 10);
 	String loginAbraam = Utility.getVariables().getProperty("loginAbraam");
 	String passwordAbraam = Utility.getVariables().getProperty("passwordAbraam");
     String ukrpostUrl = Utility.getVariables().getProperty("mainUrl");
@@ -36,13 +39,13 @@ public class EnterPaMakeShipmentMozillaTest {
 	
 	@Test (dependsOnMethods="LoginToPa", description = "Test to create shipment Group")
 	public void CreateShipmentGroup () throws InterruptedException {
-		Thread.sleep(3000);
+		Thread.sleep(4000);
 		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div[1]/div[2]/div/div[2]/div/button")).click();
-		Assert.assertTrue(wd.findElement(By.cssSelector("input[name='shipmentgroupname']")).isDisplayed());
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[name='shipmentgroupname']")));
 		wd.findElement(By.cssSelector("input[name='shipmentgroupname']")).sendKeys("FirstGroup");
 		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div[1]/div[2]/div/div[3]/div/button")).click();
 		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div[1]/div[3]/div/div[2]/div/button")).click();
-		Thread.sleep(2000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div/form/fieldset/div[1]/div/h3")));
 		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div/form/fieldset/div[1]/div/h3")).getText().equals("Реєстрація нового відправлення");
 	}
 	
@@ -83,7 +86,7 @@ public class EnterPaMakeShipmentMozillaTest {
 		// Check shipment status and price
 		Assert.assertEquals(actualShipmentStatus, "Створене");
 		String actualShipmentPrice =  wd.findElement(By.xpath("//*[@class='modal fade ng-scope in']/div/div/div[2]/table/tbody/tr[10]/td/div/div")).getText();
-		Assert.assertEquals(actualShipmentPrice, "63.9грн., знижка 5% врахована");
+		Assert.assertEquals(actualShipmentPrice, "63.9 грн.");
 	}
 	 @AfterMethod 
 	 public void takeScreenShotOnFailure(ITestResult testResult) throws IOException { 

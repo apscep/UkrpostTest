@@ -2,7 +2,9 @@ package ukrpostTestingChrome;
 import java.io.IOException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
@@ -13,9 +15,11 @@ import library.ChromeRunner;
 import library.Utility;
 public class EnterPaMakeShipmentChromeTest {
 	WebDriver wd = ChromeRunner.setChromeDriver();
+	WebDriverWait wait = new WebDriverWait(wd, 10);
 	String loginAbraam = Utility.getVariables().getProperty("loginAbraam");
 	String passwordAbraam = Utility.getVariables().getProperty("passwordAbraam");
-    String ukrpostUrl = Utility.getVariables().getProperty("mainUrl");  
+    String ukrpostUrl = Utility.getVariables().getProperty("mainUrl");
+   
    	   	
 	@Test (description = "This test will check condition of web site")
 	public void Loadsite () {
@@ -37,16 +41,18 @@ public class EnterPaMakeShipmentChromeTest {
 	public void CreateShipmentGroup () throws InterruptedException {
 		Thread.sleep(3000);
 		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div[1]/div[2]/div/div[2]/div/button")).click();
-		Assert.assertTrue(wd.findElement(By.cssSelector("input[name='shipmentgroupname']")).isDisplayed());
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[name='shipmentgroupname']")));
 		wd.findElement(By.cssSelector("input[name='shipmentgroupname']")).sendKeys("FirstGroup");
 		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div[1]/div[2]/div/div[3]/div/button")).click();
 		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div[1]/div[3]/div/div[2]/div/button")).click();
-		Thread.sleep(2000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div/form/fieldset/div[1]/div/h3")));
 		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div/form/fieldset/div[1]/div/h3")).getText().equals("Реєстрація нового відправлення");
 	}
 	
 	@Test (dependsOnMethods="CreateShipmentGroup", description = "Test to create shipment")
 	public void CreateShipment () {
+		WebDriverWait wait = new WebDriverWait(wd, 10);
+		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[id='dropOffPostcode']")));
 		wd.findElement(By.cssSelector("input[id='dropOffPostcode']")).sendKeys("04080");
 		wd.findElement(By.cssSelector("input[id='surname']")).sendKeys("Іванов");
 		wd.findElement(By.cssSelector("input[id='name']")).sendKeys("Іван");
@@ -82,7 +88,7 @@ public class EnterPaMakeShipmentChromeTest {
 		// Check shipment status and price
 		Assert.assertEquals(actualShipmentStatus, "Створене");
 		String actualShipmentPrice =  wd.findElement(By.xpath("//*[@class='modal fade ng-scope in']/div/div/div[2]/table/tbody/tr[10]/td/div/div")).getText();
-		Assert.assertEquals(actualShipmentPrice, "63.9грн., знижка 5% врахована");
+		Assert.assertEquals(actualShipmentPrice, "63.9 грн.");
 	}
 	 @AfterMethod 
 	 public void takeScreenShotOnFailure(ITestResult testResult) throws IOException { 
