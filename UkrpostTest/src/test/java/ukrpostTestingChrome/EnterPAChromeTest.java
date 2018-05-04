@@ -1,6 +1,5 @@
 package ukrpostTestingChrome;
 import java.io.IOException;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.ITestResult;
@@ -11,6 +10,7 @@ import library.ChromeRunner;
 import library.Utility;
 import objectRepository.LoginPage;
 import objectRepository.MainPage;
+import objectRepository.PersonalAccountMainPage;
 public class EnterPAChromeTest  {
 	
 	WebDriver wd = ChromeRunner.setChromeDriver();
@@ -20,6 +20,7 @@ public class EnterPAChromeTest  {
     //Page object patterns
     MainPage mp = new MainPage(wd);
     LoginPage lp = new LoginPage(wd);
+    PersonalAccountMainPage pamp = new PersonalAccountMainPage(wd);
    	
    	@Test (description = "This test will check condition of web site")
 	public void Loadsite () {
@@ -36,12 +37,12 @@ public class EnterPAChromeTest  {
 		lp.inputLoginId().sendKeys(loginAbraam);
 		lp.inputPasswordId().sendKeys(passwordAbraam);
 		lp.submitButtonId().click();
-		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[1]/h3")).getText().equals("Особистий кабінет");
+		pamp.headerId().getText().equals("Особистий кабінет");
 	}
 	
 	@Test (dependsOnMethods="LoginToPa", description = "This test will log out from personal account")
 	public void LogoutPa () {
-		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[1]/div/ul/li[6]/a")).click();
+		pamp.logoutButtonId().click();
 	}
 	 @AfterMethod 
 	 public void takeScreenShotOnFailure(ITestResult testResult) throws IOException { 

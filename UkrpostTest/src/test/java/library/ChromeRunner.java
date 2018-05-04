@@ -14,6 +14,7 @@ public class ChromeRunner {
 	   	chromeOptions.addArguments("--start-maximized");
 	   	wd = new ChromeDriver(chromeOptions);
 	   	wd.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	   	wd.manage().deleteAllCookies();
 		return wd;
 	 	 }
 	

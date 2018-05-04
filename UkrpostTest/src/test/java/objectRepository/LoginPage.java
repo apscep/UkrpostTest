@@ -12,7 +12,7 @@ public class LoginPage {
  
  By inputLogin = By.xpath("//*[@id=\"login-form\"]/form/div[1]/div/input");
  By inputPassword = By.xpath(".//*[@id=\"login-form\"]/form/div[2]/div/input");	
- By submitButton = By.xpath("/*[@id=\"login-submit\"]");	
+ By submitButton = By.id("login-submit");	
  
  public WebElement inputLoginId() {
 	return wd.findElement(inputLogin);
