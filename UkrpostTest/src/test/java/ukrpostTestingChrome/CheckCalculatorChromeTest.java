@@ -11,18 +11,15 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-import library.ChromeRunner;
+import library.BrowsersSettings;
 import library.Utility;
-public class CheckCalculatorChromeTest   {
-
-WebDriver wd = ChromeRunner.setChromeDriver();
-String ukrpostUrl = Utility.getVariables().getProperty("mainUrl");
-MainPage mp = new MainPage(wd);
-
-
-	@Test (description = "This test will check condition of web site")
-	public void Loadsite ()	{
+public class CheckCalculatorChromeTest extends BrowsersSettings {
+	WebDriver wd = BrowsersSettings.inizializeDriver();
+	String ukrpostUrl = Utility.getVariables().getProperty("mainUrl");
+	MainPage mp = new MainPage(wd);
 	
+   	@Test (description = "This test will check condition of web site")
+	public void Loadsite () {
 		wd.get(ukrpostUrl);	
 		String currentUrl = wd.getCurrentUrl();
 		Assert.assertTrue(currentUrl.matches("^(http|https)://ukrposhta.ua/"));
@@ -32,7 +29,7 @@ MainPage mp = new MainPage(wd);
 	}
 	
 	@Test (dependsOnMethods="Loadsite", description = "This test will calculate express shipment From Kyiv to Lviv")
-	public void CalculateShipment()	{
+	public void CalculateShipment() throws IOException	{
 		WebDriverWait wait = new WebDriverWait(wd, 8);
 		//Select type of shipment
 		Select typeSelect = new Select(wd.findElement(By.cssSelector("select[name='type_of_departure']")));
@@ -62,16 +59,16 @@ MainPage mp = new MainPage(wd);
 		Assert.assertEquals(wd.findElement(By.xpath("//*[@id=\"sum_result\"]")).getText(), "Загальна сума: 49 грн.");
 
 		}
-	 @AfterMethod 
-	 public void takeScreenShotOnFailure(ITestResult testResult) throws IOException { 
+	 @AfterMethod
+    	 public void takeScreenShotOnFailure(ITestResult testResult) throws IOException { 
 		if (testResult.getStatus() == ITestResult.FAILURE) { 
 		Utility.CaptureScreenshot(wd, "Calculator failed");	
 			}
 		}
 
 	@AfterClass
-		public void CloseBrowser() {
-			wd.quit();
+		public void CloseBrowser() throws IOException {
+		wd.quit();
 	}
 
 
