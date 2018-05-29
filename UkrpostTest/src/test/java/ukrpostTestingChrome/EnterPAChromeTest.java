@@ -37,7 +37,7 @@ public class EnterPAChromeTest  {
 		lp.inputLoginId().sendKeys(loginAbraam);
 		lp.inputPasswordId().sendKeys(passwordAbraam);
 		lp.submitButtonId().click();
-		pamp.headerId().getText().equals("Особистий кабінет");
+		pamp.headerId().getText().equals("РћСЃРѕР±РёСЃС‚РёР№ РєР°Р±С–РЅРµС‚");
 	}
 	
 	@Test (dependsOnMethods="LoginToPa", description = "This test will log out from personal account")

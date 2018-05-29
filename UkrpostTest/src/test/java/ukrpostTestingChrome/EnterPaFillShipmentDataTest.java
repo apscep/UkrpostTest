@@ -31,7 +31,7 @@ public class EnterPaFillShipmentDataTest {
 		lp.inputLoginId().sendKeys(loginAbraam);
 		lp.inputPasswordId().sendKeys(passwordAbraam);
 		lp.submitButtonId().click();
-		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[1]/h3")).getText().equals("Особистий кабінет");
+		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[1]/h3")).getText().equals("РћСЃРѕР±РёСЃС‚РёР№ РєР°Р±С–РЅРµС‚");
 	}
 	
 	@Test (dependsOnMethods="LoginToPa", description = "Test to create shipment Group")
@@ -43,22 +43,22 @@ public class EnterPaFillShipmentDataTest {
 		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div[1]/div[2]/div/div[3]/div/button")).click();
 		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div[1]/div[3]/div/div[2]/div/button")).click();
 		Thread.sleep(4000);
-		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div/form/fieldset/div[1]/div/h3")).getText().equals("Реєстрація нового відправлення");
+		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div/form/fieldset/div[1]/div/h3")).getText().equals("Р РµС”СЃС‚СЂР°С†С–СЏ РЅРѕРІРѕРіРѕ РІС–РґРїСЂР°РІР»РµРЅРЅСЏ");
 	}
 	
 	@Test (dependsOnMethods="CreateShipmentGroup", description = "Test to create shipment")
 	public void CreateShipment () {
 		wd.findElement(By.cssSelector("input[id='dropOffPostcode']")).sendKeys("04080");
-		wd.findElement(By.cssSelector("input[id='surname']")).sendKeys("Іванов");
-		wd.findElement(By.cssSelector("input[id='name']")).sendKeys("Іван");
+		wd.findElement(By.cssSelector("input[id='surname']")).sendKeys("РђСЂС‚РµРјРµРЅРєРѕ");
+		wd.findElement(By.cssSelector("input[id='name']")).sendKeys("РџР°РІР»Рѕ");
 		wd.findElement(By.cssSelector("input[id='phone']")).sendKeys("633075463");
 		Select dropdownDelType = new Select(wd.findElement(By.id("delivery-method")));
 		dropdownDelType.selectByValue("D2D");
 		Select dropdownRegion = new Select(wd.findElement(By.id("region")));
-		dropdownRegion.selectByValue("Волинська");
-		wd.findElement(By.cssSelector("input[id='street']")).sendKeys("Будівельників");
+		dropdownRegion.selectByValue("РҐРµСЂСЃРѕРЅСЃСЊРєР°");
+		wd.findElement(By.cssSelector("input[id='street']")).sendKeys("РђСЂР±СѓР·РЅР°");
 		wd.findElement(By.cssSelector("input[id='house']")).sendKeys("15");
-		wd.findElement(By.cssSelector("input[id='city']")).sendKeys("Луцьк");
+		wd.findElement(By.cssSelector("input[id='city']")).sendKeys("РҐРµСЂСЃРѕРЅ");
 		wd.findElement(By.cssSelector("input[id='apartment']")).sendKeys("20");
 		wd.findElement(By.cssSelector("input[id='post-index']")).sendKeys("43026");
 		wd.findElement(By.cssSelector("input[id='weight']")).sendKeys("2000");

@@ -36,7 +36,7 @@ public class EnterPaNegativeChromeTest {
 		lp.inputLoginId().sendKeys(loginAbraam);
 		lp.inputPasswordId().sendKeys(passwordAbraam);
 		lp.submitButtonId().click();
-		wd.findElement(By.xpath("//*[@id=\"login-form\"]/div")).getText().equals("Логін або пароль не вірні!");
+		wd.findElement(By.xpath("//*[@id=\"login-form\"]/div")).getText().equals("Р›РѕРіС–РЅ Р°Р±Рѕ РїР°СЂРѕР»СЊ РЅРµ РІС–СЂРЅС–!");
 	}
 	 @AfterMethod 
 	 public void takeScreenShotOnFailure(ITestResult testResult) throws IOException { 

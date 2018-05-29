@@ -56,7 +56,7 @@ public class CheckCalculatorChromeTest extends BrowsersSettings {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("result")));
 		Assert.assertTrue(wd.findElement(By.id("result")).isDisplayed());
 		//Validate Shipment price Expected - 48
-		Assert.assertEquals(wd.findElement(By.xpath("//*[@id=\"sum_result\"]")).getText(), "Загальна сума: 49 грн.");
+		Assert.assertEquals(wd.findElement(By.xpath("//*[@id=\"sum_result\"]")).getText(), "Р—Р°РіР°Р»СЊРЅР° СЃСѓРјР°: 48 РіСЂРЅ.");
 
 		}
 	 @AfterMethod

@@ -2,90 +2,90 @@
 <testng-results skipped="0" failed="0" total="5" passed="5">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="21516" started-at="2018-04-18T10:58:55Z" finished-at="2018-04-18T10:59:17Z">
+  <suite name="Default suite" duration-ms="18483" started-at="2018-05-29T18:11:15Z" finished-at="2018-05-29T18:11:33Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="21516" started-at="2018-04-18T10:58:55Z" finished-at="2018-04-18T10:59:17Z">
+    <test name="Default test" duration-ms="18483" started-at="2018-05-29T18:11:15Z" finished-at="2018-05-29T18:11:33Z">
       <class name="ukrpostTestingChrome.EnterPaMakeShipmentChromeTest">
-        <test-method status="PASS" signature="Loadsite()[pri:0, instance:ukrpostTestingChrome.EnterPaMakeShipmentChromeTest@5890e879]" name="Loadsite" duration-ms="2704" started-at="2018-04-18T13:58:55Z" description="This test will check condition of web site" finished-at="2018-04-18T13:58:58Z">
+        <test-method status="PASS" signature="Loadsite()[pri:0, instance:ukrpostTestingChrome.EnterPaMakeShipmentChromeTest@6f10d5b6]" name="Loadsite" duration-ms="3859" started-at="2018-05-29T21:11:15Z" description="This test will check condition of web site" finished-at="2018-05-29T21:11:19Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Loadsite -->
-        <test-method status="PASS" signature="takeScreenShotOnFailure(org.testng.ITestResult)[pri:0, instance:ukrpostTestingChrome.EnterPaMakeShipmentChromeTest@5890e879]" name="takeScreenShotOnFailure" is-config="true" duration-ms="1" started-at="2018-04-18T13:58:58Z" finished-at="2018-04-18T13:58:58Z">
+        <test-method status="PASS" signature="takeScreenShotOnFailure(org.testng.ITestResult)[pri:0, instance:ukrpostTestingChrome.EnterPaMakeShipmentChromeTest@6f10d5b6]" name="takeScreenShotOnFailure" is-config="true" duration-ms="1" started-at="2018-05-29T21:11:19Z" finished-at="2018-05-29T21:11:19Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=Loadsite status=SUCCESS method=EnterPaMakeShipmentChromeTest.Loadsite()[pri:0, instance:ukrpostTestingChrome.EnterPaMakeShipmentChromeTest@5890e879] output={null}]]]>
+                <![CDATA[[TestResult name=Loadsite status=SUCCESS method=EnterPaMakeShipmentChromeTest.Loadsite()[pri:0, instance:ukrpostTestingChrome.EnterPaMakeShipmentChromeTest@6f10d5b6] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- takeScreenShotOnFailure -->
-        <test-method status="PASS" signature="LoginToPa()[pri:0, instance:ukrpostTestingChrome.EnterPaMakeShipmentChromeTest@5890e879]" name="LoginToPa" duration-ms="4401" started-at="2018-04-18T13:58:58Z" description="This test will login personal account" depends-on-methods="ukrpostTestingChrome.EnterPaMakeShipmentChromeTest.Loadsite" finished-at="2018-04-18T13:59:02Z">
+        <test-method status="PASS" signature="LoginToPa()[pri:0, instance:ukrpostTestingChrome.EnterPaMakeShipmentChromeTest@6f10d5b6]" name="LoginToPa" duration-ms="2633" started-at="2018-05-29T21:11:19Z" description="This test will login personal account" depends-on-methods="ukrpostTestingChrome.EnterPaMakeShipmentChromeTest.Loadsite" finished-at="2018-05-29T21:11:21Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- LoginToPa -->
-        <test-method status="PASS" signature="CreateShipmentGroup()[pri:0, instance:ukrpostTestingChrome.EnterPaMakeShipmentChromeTest@5890e879]" name="CreateShipmentGroup" duration-ms="7981" started-at="2018-04-18T13:59:02Z" description="Test to create shipment Group" depends-on-methods="ukrpostTestingChrome.EnterPaMakeShipmentChromeTest.LoginToPa" finished-at="2018-04-18T13:59:10Z">
+        <test-method status="PASS" signature="takeScreenShotOnFailure(org.testng.ITestResult)[pri:0, instance:ukrpostTestingChrome.EnterPaMakeShipmentChromeTest@6f10d5b6]" name="takeScreenShotOnFailure" is-config="true" duration-ms="0" started-at="2018-05-29T21:11:21Z" finished-at="2018-05-29T21:11:21Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=LoginToPa status=SUCCESS method=EnterPaMakeShipmentChromeTest.LoginToPa()[pri:0, instance:ukrpostTestingChrome.EnterPaMakeShipmentChromeTest@6f10d5b6] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- takeScreenShotOnFailure -->
+        <test-method status="PASS" signature="CreateShipmentGroup()[pri:0, instance:ukrpostTestingChrome.EnterPaMakeShipmentChromeTest@6f10d5b6]" name="CreateShipmentGroup" duration-ms="5347" started-at="2018-05-29T21:11:21Z" description="Test to create shipment Group" depends-on-methods="ukrpostTestingChrome.EnterPaMakeShipmentChromeTest.LoginToPa" finished-at="2018-05-29T21:11:27Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- CreateShipmentGroup -->
-        <test-method status="PASS" signature="takeScreenShotOnFailure(org.testng.ITestResult)[pri:0, instance:ukrpostTestingChrome.EnterPaMakeShipmentChromeTest@5890e879]" name="takeScreenShotOnFailure" is-config="true" duration-ms="0" started-at="2018-04-18T13:59:02Z" finished-at="2018-04-18T13:59:02Z">
+        <test-method status="PASS" signature="takeScreenShotOnFailure(org.testng.ITestResult)[pri:0, instance:ukrpostTestingChrome.EnterPaMakeShipmentChromeTest@6f10d5b6]" name="takeScreenShotOnFailure" is-config="true" duration-ms="0" started-at="2018-05-29T21:11:27Z" finished-at="2018-05-29T21:11:27Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=LoginToPa status=SUCCESS method=EnterPaMakeShipmentChromeTest.LoginToPa()[pri:0, instance:ukrpostTestingChrome.EnterPaMakeShipmentChromeTest@5890e879] output={null}]]]>
+                <![CDATA[[TestResult name=CreateShipmentGroup status=SUCCESS method=EnterPaMakeShipmentChromeTest.CreateShipmentGroup()[pri:0, instance:ukrpostTestingChrome.EnterPaMakeShipmentChromeTest@6f10d5b6] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- takeScreenShotOnFailure -->
-        <test-method status="PASS" signature="takeScreenShotOnFailure(org.testng.ITestResult)[pri:0, instance:ukrpostTestingChrome.EnterPaMakeShipmentChromeTest@5890e879]" name="takeScreenShotOnFailure" is-config="true" duration-ms="1" started-at="2018-04-18T13:59:10Z" finished-at="2018-04-18T13:59:10Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=CreateShipmentGroup status=SUCCESS method=EnterPaMakeShipmentChromeTest.CreateShipmentGroup()[pri:0, instance:ukrpostTestingChrome.EnterPaMakeShipmentChromeTest@5890e879] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- takeScreenShotOnFailure -->
-        <test-method status="PASS" signature="CreateShipment()[pri:0, instance:ukrpostTestingChrome.EnterPaMakeShipmentChromeTest@5890e879]" name="CreateShipment" duration-ms="1485" started-at="2018-04-18T13:59:10Z" description="Test to create shipment" depends-on-methods="ukrpostTestingChrome.EnterPaMakeShipmentChromeTest.CreateShipmentGroup" finished-at="2018-04-18T13:59:12Z">
+        <test-method status="PASS" signature="CreateShipment()[pri:0, instance:ukrpostTestingChrome.EnterPaMakeShipmentChromeTest@6f10d5b6]" name="CreateShipment" duration-ms="1443" started-at="2018-05-29T21:11:27Z" description="Test to create shipment" depends-on-methods="ukrpostTestingChrome.EnterPaMakeShipmentChromeTest.CreateShipmentGroup" finished-at="2018-05-29T21:11:28Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- CreateShipment -->
-        <test-method status="PASS" signature="takeScreenShotOnFailure(org.testng.ITestResult)[pri:0, instance:ukrpostTestingChrome.EnterPaMakeShipmentChromeTest@5890e879]" name="takeScreenShotOnFailure" is-config="true" duration-ms="1" started-at="2018-04-18T13:59:12Z" finished-at="2018-04-18T13:59:12Z">
+        <test-method status="PASS" signature="takeScreenShotOnFailure(org.testng.ITestResult)[pri:0, instance:ukrpostTestingChrome.EnterPaMakeShipmentChromeTest@6f10d5b6]" name="takeScreenShotOnFailure" is-config="true" duration-ms="0" started-at="2018-05-29T21:11:28Z" finished-at="2018-05-29T21:11:28Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=CreateShipment status=SUCCESS method=EnterPaMakeShipmentChromeTest.CreateShipment()[pri:0, instance:ukrpostTestingChrome.EnterPaMakeShipmentChromeTest@5890e879] output={null}]]]>
+                <![CDATA[[TestResult name=CreateShipment status=SUCCESS method=EnterPaMakeShipmentChromeTest.CreateShipment()[pri:0, instance:ukrpostTestingChrome.EnterPaMakeShipmentChromeTest@6f10d5b6] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- takeScreenShotOnFailure -->
-        <test-method status="PASS" signature="CheckShipmentData()[pri:0, instance:ukrpostTestingChrome.EnterPaMakeShipmentChromeTest@5890e879]" name="CheckShipmentData" duration-ms="4186" started-at="2018-04-18T13:59:12Z" description="Test to check crreated shipment data" depends-on-methods="ukrpostTestingChrome.EnterPaMakeShipmentChromeTest.CreateShipment" finished-at="2018-04-18T13:59:16Z">
+        <test-method status="PASS" signature="CheckShipmentData()[pri:0, instance:ukrpostTestingChrome.EnterPaMakeShipmentChromeTest@6f10d5b6]" name="CheckShipmentData" duration-ms="4522" started-at="2018-05-29T21:11:28Z" description="Test to check crreated shipment data" depends-on-methods="ukrpostTestingChrome.EnterPaMakeShipmentChromeTest.CreateShipment" finished-at="2018-05-29T21:11:33Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- CheckShipmentData -->
-        <test-method status="PASS" signature="takeScreenShotOnFailure(org.testng.ITestResult)[pri:0, instance:ukrpostTestingChrome.EnterPaMakeShipmentChromeTest@5890e879]" name="takeScreenShotOnFailure" is-config="true" duration-ms="1" started-at="2018-04-18T13:59:16Z" finished-at="2018-04-18T13:59:16Z">
+        <test-method status="PASS" signature="CloseBrowser()[pri:0, instance:ukrpostTestingChrome.EnterPaMakeShipmentChromeTest@6f10d5b6]" name="CloseBrowser" is-config="true" duration-ms="653" started-at="2018-05-29T21:11:33Z" finished-at="2018-05-29T21:11:33Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CloseBrowser -->
+        <test-method status="PASS" signature="takeScreenShotOnFailure(org.testng.ITestResult)[pri:0, instance:ukrpostTestingChrome.EnterPaMakeShipmentChromeTest@6f10d5b6]" name="takeScreenShotOnFailure" is-config="true" duration-ms="0" started-at="2018-05-29T21:11:33Z" finished-at="2018-05-29T21:11:33Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=CheckShipmentData status=SUCCESS method=EnterPaMakeShipmentChromeTest.CheckShipmentData()[pri:0, instance:ukrpostTestingChrome.EnterPaMakeShipmentChromeTest@5890e879] output={null}]]]>
+                <![CDATA[[TestResult name=CheckShipmentData status=SUCCESS method=EnterPaMakeShipmentChromeTest.CheckShipmentData()[pri:0, instance:ukrpostTestingChrome.EnterPaMakeShipmentChromeTest@6f10d5b6] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- takeScreenShotOnFailure -->
-        <test-method status="PASS" signature="CloseBrowser()[pri:0, instance:ukrpostTestingChrome.EnterPaMakeShipmentChromeTest@5890e879]" name="CloseBrowser" is-config="true" duration-ms="743" started-at="2018-04-18T13:59:16Z" finished-at="2018-04-18T13:59:17Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- CloseBrowser -->
       </class> <!-- ukrpostTestingChrome.EnterPaMakeShipmentChromeTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
