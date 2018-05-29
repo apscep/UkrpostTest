@@ -11,11 +11,11 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-import library.ChromeRunner;
+import library.BrowsersSettings;
 import library.Utility;
 public class DropDownTest {
 	
-	WebDriver wd = ChromeRunner.setChromeDriver();
+	WebDriver wd = BrowsersSettings.inizializeDriver();
 	String ukrpostUrl = Utility.getVariables().getProperty("mainUrl"); 
 
 

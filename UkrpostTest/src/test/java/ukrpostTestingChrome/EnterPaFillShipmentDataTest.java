@@ -4,14 +4,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import library.ChromeRunner;
+import library.BrowsersSettings;
 import library.Utility;
 import objectRepository.LoginPage;
 import objectRepository.MainPage;
 public class EnterPaFillShipmentDataTest {
 	
-	WebDriver wd = ChromeRunner.setChromeDriver();
+	WebDriver wd = BrowsersSettings.inizializeDriver();
 	String loginAbraam = Utility.getVariables().getProperty("loginAbraam");
 	String passwordAbraam = Utility.getVariables().getProperty("passwordAbraam");
     String ukrpostUrl = Utility.getVariables().getProperty("mainUrl");

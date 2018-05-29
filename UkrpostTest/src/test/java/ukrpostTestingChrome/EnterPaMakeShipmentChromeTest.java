@@ -10,13 +10,12 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-
-import library.ChromeRunner;
+import library.BrowsersSettings;
 import library.Utility;
 import objectRepository.LoginPage;
 import objectRepository.MainPage;
 public class EnterPaMakeShipmentChromeTest {
-	WebDriver wd = ChromeRunner.setChromeDriver();
+	WebDriver wd = BrowsersSettings.inizializeDriver();
 	WebDriverWait wait = new WebDriverWait(wd, 10);
 	String loginAbraam = Utility.getVariables().getProperty("loginAbraam");
 	String passwordAbraam = Utility.getVariables().getProperty("passwordAbraam");

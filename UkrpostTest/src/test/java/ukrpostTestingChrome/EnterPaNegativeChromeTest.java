@@ -7,14 +7,13 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-
-import library.ChromeRunner;
+import library.BrowsersSettings;
 import library.Utility;
 import objectRepository.LoginPage;
 import objectRepository.MainPage;
 public class EnterPaNegativeChromeTest {
 	
-	WebDriver wd = ChromeRunner.setChromeDriver();
+	WebDriver wd = BrowsersSettings.inizializeDriver();
 	String loginAbraam = Utility.getVariables().getProperty("loginAbraam");
 	String passwordAbraam = Utility.getVariables().getProperty("passwordAbraamIncorrect");
     String ukrpostUrl = Utility.getVariables().getProperty("mainUrl"); 
