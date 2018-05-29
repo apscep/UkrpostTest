@@ -10,29 +10,33 @@ import org.testng.annotations.Test;
 
 import library.ChromeRunner;
 import library.Utility;
+import objectRepository.LoginPage;
+import objectRepository.MainPage;
 public class EnterPaNegativeChromeTest {
 	
 	WebDriver wd = ChromeRunner.setChromeDriver();
 	String loginAbraam = Utility.getVariables().getProperty("loginAbraam");
 	String passwordAbraam = Utility.getVariables().getProperty("passwordAbraamIncorrect");
-    String ukrpostUrl = Utility.getVariables().getProperty("mainUrl");     
+    String ukrpostUrl = Utility.getVariables().getProperty("mainUrl"); 
+    MainPage mp = new MainPage(wd);
+    LoginPage lp = new LoginPage(wd);
      	
 	@Test (description = "This test will check condition of web site")
 	public void Loadsite () {
 		wd.get(ukrpostUrl);	
 		String currentUrl = wd.getCurrentUrl();
 		Assert.assertTrue(currentUrl.matches("^(http|https)://ukrposhta.ua/"));
-		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[1]/div/ul/li[6]/a")).click();
+		mp.personalAccountId().click();
 		String currentUrl2 = wd.getCurrentUrl();
 		Assert.assertTrue(currentUrl2.matches("^(http|https)://ukrposhta.ua/login/"));
 		}
 	
 	@Test (dependsOnMethods="Loadsite", description = "This test will login personal account")
 	public void LoginToPa()  {
-		wd.findElement(By.xpath("//*[@id=\"login-form\"]/form/div[1]/div/input")).sendKeys(loginAbraam);
-		wd.findElement(By.xpath(".//*[@id=\"login-form\"]/form/div[2]/div/input")).sendKeys(passwordAbraam);
-		wd.findElement(By.xpath("//*[@id=\"login-submit\"]")).click();
-		wd.findElement(By.xpath("//*[@id=\"login-form\"]/div")).getText().equals("Ëîã³í àáî ïàðîëü íå â³ðí³!");
+		lp.inputLoginId().sendKeys(loginAbraam);
+		lp.inputPasswordId().sendKeys(passwordAbraam);
+		lp.submitButtonId().click();
+		wd.findElement(By.xpath("//*[@id=\"login-form\"]/div")).getText().equals("Ð›Ð¾Ð³Ñ–Ð½ Ð°Ð±Ð¾ Ð¿Ð°Ñ€Ð¾Ð»ÑŒ Ð½Ðµ Ð²Ñ–Ñ€Ð½Ñ–!");
 	}
 	 @AfterMethod 
 	 public void takeScreenShotOnFailure(ITestResult testResult) throws IOException { 

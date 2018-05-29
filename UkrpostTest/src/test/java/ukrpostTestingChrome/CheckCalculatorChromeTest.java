@@ -1,4 +1,5 @@
 package ukrpostTestingChrome;
+import objectRepository.MainPage;
 import java.io.IOException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -10,26 +11,25 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-import library.ChromeRunner;
+import library.BrowsersSettings;
 import library.Utility;
-public class CheckCalculatorChromeTest   {
+public class CheckCalculatorChromeTest extends BrowsersSettings {
+	WebDriver wd = BrowsersSettings.inizializeDriver();
+	String ukrpostUrl = Utility.getVariables().getProperty("mainUrl");
+	MainPage mp = new MainPage(wd);
 	
-WebDriver wd = ChromeRunner.setChromeDriver();
-String ukrpostUrl = Utility.getVariables().getProperty("mainUrl");
-
-
-	@Test (description = "This test will check condition of web site")
-	public void Loadsite ()	{
+   	@Test (description = "This test will check condition of web site")
+	public void Loadsite () {
 		wd.get(ukrpostUrl);	
 		String currentUrl = wd.getCurrentUrl();
 		Assert.assertTrue(currentUrl.matches("^(http|https)://ukrposhta.ua/"));
-		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[3]/div/div/div[1]/a[1]")).click();
+		mp.calculatorId().click();
 		String currentUrl2 = wd.getCurrentUrl();
 		Assert.assertTrue(currentUrl2.matches("^(http|https)://ukrposhta.ua/kalkulyator-forma-rozraxunku/"));
 	}
 	
 	@Test (dependsOnMethods="Loadsite", description = "This test will calculate express shipment From Kyiv to Lviv")
-	public void CalculateShipment()	{
+	public void CalculateShipment() throws IOException	{
 		WebDriverWait wait = new WebDriverWait(wd, 8);
 		//Select type of shipment
 		Select typeSelect = new Select(wd.findElement(By.cssSelector("select[name='type_of_departure']")));
@@ -56,18 +56,19 @@ String ukrpostUrl = Utility.getVariables().getProperty("mainUrl");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("result")));
 		Assert.assertTrue(wd.findElement(By.id("result")).isDisplayed());
 		//Validate Shipment price Expected - 48
-		Assert.assertEquals(wd.findElement(By.xpath("//*[@id=\"sum_result\"]")).getText(), "Загальна сума: 48 грн.");
+		Assert.assertEquals(wd.findElement(By.xpath("//*[@id=\"sum_result\"]")).getText(), "Р—Р°РіР°Р»СЊРЅР° СЃСѓРјР°: 48 РіСЂРЅ.");
+
 		}
-	 @AfterMethod 
-	 public void takeScreenShotOnFailure(ITestResult testResult) throws IOException { 
+	 @AfterMethod
+    	 public void takeScreenShotOnFailure(ITestResult testResult) throws IOException { 
 		if (testResult.getStatus() == ITestResult.FAILURE) { 
 		Utility.CaptureScreenshot(wd, "Calculator failed");	
 			}
 		}
 
 	@AfterClass
-		public void CloseBrowser() {
-			wd.quit();
+		public void CloseBrowser() throws IOException {
+		wd.quit();
 	}
 
 

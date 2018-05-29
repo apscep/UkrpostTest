@@ -2,7 +2,9 @@ package ukrpostTestingChrome;
 import java.io.IOException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
@@ -11,53 +13,61 @@ import org.testng.annotations.Test;
 
 import library.ChromeRunner;
 import library.Utility;
+import objectRepository.LoginPage;
+import objectRepository.MainPage;
 public class EnterPaMakeShipmentChromeTest {
 	WebDriver wd = ChromeRunner.setChromeDriver();
+	WebDriverWait wait = new WebDriverWait(wd, 10);
 	String loginAbraam = Utility.getVariables().getProperty("loginAbraam");
 	String passwordAbraam = Utility.getVariables().getProperty("passwordAbraam");
-    String ukrpostUrl = Utility.getVariables().getProperty("mainUrl");  
+    String ukrpostUrl = Utility.getVariables().getProperty("mainUrl");
+    MainPage mp = new MainPage(wd);
+    LoginPage lp = new LoginPage(wd);
+   
    	   	
 	@Test (description = "This test will check condition of web site")
 	public void Loadsite () {
 		wd.get(ukrpostUrl);	
-		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[1]/div/ul/li[6]/a")).click();
+		mp.personalAccountId().click();
 		String currentUrl = wd.getCurrentUrl();
 		Assert.assertTrue(currentUrl.matches("^(http|https)://ukrposhta.ua/login/"));
 	}
 	
 	@Test (dependsOnMethods="Loadsite", description = "This test will login personal account")
 	public void LoginToPa()	{
-		wd.findElement(By.xpath("//*[@id=\"login-form\"]/form/div[1]/div/input")).sendKeys(loginAbraam);
-		wd.findElement(By.xpath(".//*[@id=\"login-form\"]/form/div[2]/div/input")).sendKeys(passwordAbraam);
-		wd.findElement(By.xpath("//*[@id=\"login-submit\"]")).click();
-		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[1]/h3")).getText().equals("Особистий кабінет");
+		lp.inputLoginId().sendKeys(loginAbraam);
+		lp.inputPasswordId().sendKeys(passwordAbraam);
+		lp.submitButtonId().click();
+		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[1]/h3")).getText().equals("РћСЃРѕР±РёСЃС‚РёР№ РєР°Р±С–РЅРµС‚");
 	}
 	
 	@Test (dependsOnMethods="LoginToPa", description = "Test to create shipment Group")
 	public void CreateShipmentGroup () throws InterruptedException {
 		Thread.sleep(3000);
 		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div[1]/div[2]/div/div[2]/div/button")).click();
-		Assert.assertTrue(wd.findElement(By.cssSelector("input[name='shipmentgroupname']")).isDisplayed());
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[name='shipmentgroupname']")));
 		wd.findElement(By.cssSelector("input[name='shipmentgroupname']")).sendKeys("FirstGroup");
 		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div[1]/div[2]/div/div[3]/div/button")).click();
 		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div[1]/div[3]/div/div[2]/div/button")).click();
-		Thread.sleep(2000);
-		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div/form/fieldset/div[1]/div/h3")).getText().equals("Реєстрація нового відправлення");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div/form/fieldset/div[1]/div/h3")));
+		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div/form/fieldset/div[1]/div/h3")).getText().equals("Р РµС”СЃС‚СЂР°С†С–СЏ РЅРѕРІРѕРіРѕ РІС–РґРїСЂР°РІР»РµРЅРЅСЏ");
 	}
 	
 	@Test (dependsOnMethods="CreateShipmentGroup", description = "Test to create shipment")
 	public void CreateShipment () {
+		WebDriverWait wait = new WebDriverWait(wd, 10);
+		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[id='dropOffPostcode']")));
 		wd.findElement(By.cssSelector("input[id='dropOffPostcode']")).sendKeys("04080");
-		wd.findElement(By.cssSelector("input[id='surname']")).sendKeys("Іванов");
-		wd.findElement(By.cssSelector("input[id='name']")).sendKeys("Іван");
+		wd.findElement(By.cssSelector("input[id='surname']")).sendKeys("РђСЂС‚РµРјРµРЅРєРѕ");
+		wd.findElement(By.cssSelector("input[id='name']")).sendKeys("РџР°РІР»Рѕ");
 		wd.findElement(By.cssSelector("input[id='phone']")).sendKeys("633075463");
 		Select dropdownDelType = new Select(wd.findElement(By.id("delivery-method")));
 		dropdownDelType.selectByValue("D2D");
 		Select dropdownRegion = new Select(wd.findElement(By.id("region")));
-		dropdownRegion.selectByValue("Волинська");
-		wd.findElement(By.cssSelector("input[id='street']")).sendKeys("Будівельників");
+		dropdownRegion.selectByValue("РҐРµСЂСЃРѕРЅСЃСЊРєР°");
+		wd.findElement(By.cssSelector("input[id='street']")).sendKeys("РђСЂР±СѓР·РЅР°");
 		wd.findElement(By.cssSelector("input[id='house']")).sendKeys("15");
-		wd.findElement(By.cssSelector("input[id='city']")).sendKeys("Луцьк");
+		wd.findElement(By.cssSelector("input[id='city']")).sendKeys("РҐРµСЂСЃРѕРЅ");
 		wd.findElement(By.cssSelector("input[id='apartment']")).sendKeys("20");
 		wd.findElement(By.cssSelector("input[id='post-index']")).sendKeys("43026");
 		wd.findElement(By.cssSelector("input[id='weight']")).sendKeys("2000");
@@ -80,9 +90,9 @@ public class EnterPaMakeShipmentChromeTest {
 		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div[2]/div/div[1]/table/tbody/tr/td[7]/button/i")).click();
 		String actualShipmentStatus =  wd.findElement(By.xpath("//*[@class='modal fade ng-scope in']/div/div/div[2]/table/tbody/tr[2]/td")).getText();
 		// Check shipment status and price
-		Assert.assertEquals(actualShipmentStatus, "Створене");
+		Assert.assertEquals(actualShipmentStatus, "РЎС‚РІРѕСЂРµРЅРµ");
 		String actualShipmentPrice =  wd.findElement(By.xpath("//*[@class='modal fade ng-scope in']/div/div/div[2]/table/tbody/tr[10]/td/div/div")).getText();
-		Assert.assertEquals(actualShipmentPrice, "63.9грн., знижка 5% врахована");
+		Assert.assertEquals(actualShipmentPrice, "63.9 РіСЂРЅ.");
 	}
 	 @AfterMethod 
 	 public void takeScreenShotOnFailure(ITestResult testResult) throws IOException { 

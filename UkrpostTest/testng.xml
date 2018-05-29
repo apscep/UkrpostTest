@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite">
-  <test name="Test">
+  <test thread-count="5" name="Test">
     <classes>
       <class name="ukrpostTestingChrome.EnterPaNegativeChromeTest"/>
-      <class name="ukrpostTestingMozilla.EnterPaMakeShipmentMozillaTest"/>
-      <class name="ukrpostTestingMozilla.EnterPaMozillaTest"/>
       <class name="ukrpostTestingChrome.EnterPaMakeShipmentChromeTest"/>
       <class name="ukrpostTestingChrome.EnterPAChromeTest"/>
       <class name="ukrpostTestingChrome.DropDownTest"/>
       <class name="ukrpostTestingChrome.CheckCalculatorChromeTest"/>
-      <class name="ukrpostTestingMozilla.CheckCalculatorMozilaTest"/>
       <class name="ukrpostTestingChrome.EnterPaFillShipmentDataTest"/>
-      <class name="ukrpostTestingMozilla.EnterPaNegativeMozillaTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

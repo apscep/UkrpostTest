@@ -1,6 +1,5 @@
 package ukrpostTestingChrome;
 import java.io.IOException;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.ITestResult;
@@ -9,34 +8,41 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import library.ChromeRunner;
 import library.Utility;
+import objectRepository.LoginPage;
+import objectRepository.MainPage;
+import objectRepository.PersonalAccountMainPage;
 public class EnterPAChromeTest  {
 	
 	WebDriver wd = ChromeRunner.setChromeDriver();
 	String loginAbraam = Utility.getVariables().getProperty("loginAbraam");
 	String passwordAbraam = Utility.getVariables().getProperty("passwordAbraam");
     String ukrpostUrl = Utility.getVariables().getProperty("mainUrl");
+    //Page object patterns
+    MainPage mp = new MainPage(wd);
+    LoginPage lp = new LoginPage(wd);
+    PersonalAccountMainPage pamp = new PersonalAccountMainPage(wd);
    	
    	@Test (description = "This test will check condition of web site")
 	public void Loadsite () {
 		wd.get(ukrpostUrl);	
 		String currentUrl = wd.getCurrentUrl();
 		Assert.assertTrue(currentUrl.matches("^(http|https)://ukrposhta.ua/"));
-		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[1]/div/ul/li[6]/a")).click();
+		mp.personalAccountId().click();
 		String currentUrl2 = wd.getCurrentUrl();
 		Assert.assertTrue(currentUrl2.matches("^(http|https)://ukrposhta.ua/login/"));
 		}
 	
 	@Test (dependsOnMethods="Loadsite", description = "This test will login personal account")
 	public void LoginToPa() {
-		wd.findElement(By.xpath("//*[@id=\"login-form\"]/form/div[1]/div/input")).sendKeys(loginAbraam);
-		wd.findElement(By.xpath(".//*[@id=\"login-form\"]/form/div[2]/div/input")).sendKeys(passwordAbraam);
-		wd.findElement(By.xpath("//*[@id=\"login-submit\"]")).click();
-		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[1]/h3")).getText().equals("ŒÒÓ·ËÒÚËÈ Í‡·≥ÌÂÚ");
+		lp.inputLoginId().sendKeys(loginAbraam);
+		lp.inputPasswordId().sendKeys(passwordAbraam);
+		lp.submitButtonId().click();
+		pamp.headerId().getText().equals("–û—Å–æ–±–∏—Å—Ç–∏–π –∫–∞–±—ñ–Ω–µ—Ç");
 	}
 	
 	@Test (dependsOnMethods="LoginToPa", description = "This test will log out from personal account")
 	public void LogoutPa () {
-		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[1]/div/ul/li[6]/a")).click();
+		pamp.logoutButtonId().click();
 	}
 	 @AfterMethod 
 	 public void takeScreenShotOnFailure(ITestResult testResult) throws IOException { 
