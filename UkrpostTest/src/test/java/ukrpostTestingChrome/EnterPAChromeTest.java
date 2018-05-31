@@ -42,7 +42,7 @@ public class EnterPAChromeTest  {
 	
 	@Test (dependsOnMethods="LoginToPa", description = "This test will log out from personal account")
 	public void LogoutPa () {
-		pamp.logoutButtonId().click();
+		//pamp.logoutButtonId().click();
 	}
 	 @AfterMethod 
 	 public void takeScreenShotOnFailure(ITestResult testResult) throws IOException { 
@@ -53,6 +53,6 @@ public class EnterPAChromeTest  {
 	
 	@AfterClass
 	public void CloseBrowser() {
-		wd.quit();
+		//wd.quit();
 	}
 }

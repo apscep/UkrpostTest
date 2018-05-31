@@ -14,6 +14,7 @@ import library.BrowsersSettings;
 import library.Utility;
 import objectRepository.LoginPage;
 import objectRepository.MainPage;
+import objectRepository.PersonalAccountMainPage;
 public class EnterPaMakeShipmentChromeTest {
 	WebDriver wd = BrowsersSettings.inizializeDriver();
 	WebDriverWait wait = new WebDriverWait(wd, 10);
@@ -22,6 +23,7 @@ public class EnterPaMakeShipmentChromeTest {
     String ukrpostUrl = Utility.getVariables().getProperty("mainUrl");
     MainPage mp = new MainPage(wd);
     LoginPage lp = new LoginPage(wd);
+    PersonalAccountMainPage pamp = new PersonalAccountMainPage(wd);
    
    	   	
 	@Test (description = "This test will check condition of web site")
@@ -37,24 +39,23 @@ public class EnterPaMakeShipmentChromeTest {
 		lp.inputLoginId().sendKeys(loginAbraam);
 		lp.inputPasswordId().sendKeys(passwordAbraam);
 		lp.submitButtonId().click();
-		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[1]/h3")).getText().equals("Особистий кабінет");
+		pamp.headerId().getText().equals("Особистий кабінет");
 	}
 	
 	@Test (dependsOnMethods="LoginToPa", description = "Test to create shipment Group")
 	public void CreateShipmentGroup () throws InterruptedException {
 		Thread.sleep(3000);
-		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div[1]/div[2]/div/div[2]/div/button")).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[name='shipmentgroupname']")));
-		wd.findElement(By.cssSelector("input[name='shipmentgroupname']")).sendKeys("FirstGroup");
-		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div[1]/div[2]/div/div[3]/div/button")).click();
-		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div[1]/div[3]/div/div[2]/div/button")).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div/form/fieldset/div[1]/div/h3")));
-		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div/form/fieldset/div[1]/div/h3")).getText().equals("Реєстрація нового відправлення");
+		pamp.addGroupButton().click();
+		wait.until(ExpectedConditions.visibilityOf(pamp.inputGroupName()));
+		pamp.inputGroupName().sendKeys("FirstGroup");
+		pamp.createGroupButton().click();
+		pamp.createShipmentButton().click();
+		wait.until(ExpectedConditions.visibilityOf(pamp.registerShipmentHeader()));
+		pamp.registerShipmentHeader().getText().equals("Реєстрація нового відправлення");
 	}
 	
 	@Test (dependsOnMethods="CreateShipmentGroup", description = "Test to create shipment")
 	public void CreateShipment () {
-		WebDriverWait wait = new WebDriverWait(wd, 10);
 		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[id='dropOffPostcode']")));
 		wd.findElement(By.cssSelector("input[id='dropOffPostcode']")).sendKeys("04080");
 		wd.findElement(By.cssSelector("input[id='surname']")).sendKeys("Артеменко");
