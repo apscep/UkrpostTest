@@ -1,4 +1,4 @@
-package ukrpostTestingChrome;
+package ukrpostWebTesting;
 import objectRepository.MainPage;
 import java.io.IOException;
 import org.openqa.selenium.By;
@@ -13,7 +13,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import library.BrowsersSettings;
 import library.Utility;
-public class CheckCalculatorChromeTest extends BrowsersSettings {
+public class CheckCalculatorTest extends BrowsersSettings {
 	WebDriver wd = BrowsersSettings.inizializeDriver();
 	String ukrpostUrl = Utility.getVariables().getProperty("mainUrl");
 	MainPage mp = new MainPage(wd);

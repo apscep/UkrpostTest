@@ -1,5 +1,6 @@
-package ukrpostTestingChrome;
+package ukrpostWebTesting;
 import java.io.IOException;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.ITestResult;
@@ -10,19 +11,16 @@ import library.BrowsersSettings;
 import library.Utility;
 import objectRepository.LoginPage;
 import objectRepository.MainPage;
-import objectRepository.PersonalAccountMainPage;
-public class EnterPAChromeTest  {
+public class EnterPaNegativeTest {
 	
 	WebDriver wd = BrowsersSettings.inizializeDriver();
 	String loginAbraam = Utility.getVariables().getProperty("loginAbraam");
-	String passwordAbraam = Utility.getVariables().getProperty("passwordAbraam");
-    String ukrpostUrl = Utility.getVariables().getProperty("mainUrl");
-    //Page object patterns
+	String passwordAbraam = Utility.getVariables().getProperty("passwordAbraamIncorrect");
+    String ukrpostUrl = Utility.getVariables().getProperty("mainUrl"); 
     MainPage mp = new MainPage(wd);
     LoginPage lp = new LoginPage(wd);
-    PersonalAccountMainPage pamp = new PersonalAccountMainPage(wd);
-   	
-   	@Test (description = "This test will check condition of web site")
+     	
+	@Test (description = "This test will check condition of web site")
 	public void Loadsite () {
 		wd.get(ukrpostUrl);	
 		String currentUrl = wd.getCurrentUrl();
@@ -33,26 +31,21 @@ public class EnterPAChromeTest  {
 		}
 	
 	@Test (dependsOnMethods="Loadsite", description = "This test will login personal account")
-	public void LoginToPa() {
+	public void LoginToPa()  {
 		lp.inputLoginId().sendKeys(loginAbraam);
 		lp.inputPasswordId().sendKeys(passwordAbraam);
 		lp.submitButtonId().click();
-		pamp.headerId().getText().equals("Особистий кабінет");
-	}
-	
-	@Test (dependsOnMethods="LoginToPa", description = "This test will log out from personal account")
-	public void LogoutPa () {
-		//pamp.logoutButtonId().click();
+		wd.findElement(By.xpath("//*[@id=\"login-form\"]/div")).getText().equals("Логін або пароль не вірні!");
 	}
 	 @AfterMethod 
 	 public void takeScreenShotOnFailure(ITestResult testResult) throws IOException { 
 		if (testResult.getStatus() == ITestResult.FAILURE) { 
-		Utility.CaptureScreenshot(wd, "Entering personal account failed");	
+		Utility.CaptureScreenshot(wd, "Negative entering personal account failed");	
 			}
 		}
 	
 	@AfterClass
 	public void CloseBrowser() {
-		//wd.quit();
+		wd.quit();
 	}
 }
