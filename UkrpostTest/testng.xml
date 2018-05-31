@@ -1,14 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Suite">
-  <test thread-count="5" name="Test">
+<suite name="Suite Ukrpost web testing">
+  <test name="Test enter PA negative">
     <classes>
-      <class name="ukrpostTestingChrome.EnterPaNegativeChromeTest"/>
-      <class name="ukrpostTestingChrome.EnterPaMakeShipmentChromeTest"/>
-      <class name="ukrpostTestingChrome.EnterPAChromeTest"/>
-      <class name="ukrpostTestingChrome.DropDownTest"/>
-      <class name="ukrpostTestingChrome.CheckCalculatorChromeTest"/>
-      <class name="ukrpostTestingChrome.EnterPaFillShipmentDataTest"/>
+      <class name="ukrpostWebTesting.EnterPaNegativeTest"/>
+     </classes>
+   </test>
+   <test name="Test Drop Down">
+   <classes> 
+      <class name="ukrpostWebTesting.DropDownTest"/>
     </classes>
-  </test> <!-- Test -->
-</suite> <!-- Suite -->
+    </test>
+   <test name="Test PA fill sh data">
+   	<classes>
+      <class name="ukrpostWebTesting.EnterPaFillShipmentDataTest"/>
+     </classes>
+    </test>
+   <test name="Test enter PA">
+     <classes>
+      <class name="ukrpostWebTesting.EnterPATest"/>
+     </classes>
+    </test>
+    <test name="Test enter PA make shipment">
+    	<classes> 
+      <class name="ukrpostWebTesting.EnterPaMakeShipmentTest"/>
+      	</classes>
+    </test>
+    <test name="Test check calculator">
+     <classes> 	
+      <class name="ukrpostWebTesting.CheckCalculatorTest"/>
+     </classes>
+  	</test> 
+  </suite> <!-- Suite -->
