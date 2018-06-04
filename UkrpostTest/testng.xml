@@ -1,34 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite Ukrpost web testing">
-  <test name="Test enter PA negative">
-    <classes>
-      <class name="ukrpostWebTesting.EnterPaNegativeTest"/>
-     </classes>
-   </test>
-   <test name="Test Drop Down">
-   <classes> 
-      <class name="ukrpostWebTesting.DropDownTest"/>
-    </classes>
-    </test>
-   <test name="Test PA fill sh data">
-   	<classes>
-      <class name="ukrpostWebTesting.EnterPaFillShipmentDataTest"/>
-     </classes>
-    </test>
-   <test name="Test enter PA">
-     <classes>
-      <class name="ukrpostWebTesting.EnterPATest"/>
-     </classes>
-    </test>
-    <test name="Test enter PA make shipment">
-    	<classes> 
-      <class name="ukrpostWebTesting.EnterPaMakeShipmentTest"/>
-      	</classes>
-    </test>
-    <test name="Test check calculator">
-     <classes> 	
-      <class name="ukrpostWebTesting.CheckCalculatorTest"/>
-     </classes>
-  	</test> 
-  </suite> <!-- Suite -->
+<test name="Regression Sequails Order" preserve-order="true" parallel="none">
+<classes>
+      <class name="ukrpostWebTesting.EnterPaNegativeTest">
+  </class>
+  <class name="ukrpostWebTesting.DropDownTest">
+  </class>
+  <class name="ukrpostWebTesting.EnterPaFillShipmentDataTest">
+  </class>
+  <class name="ukrpostWebTesting.EnterPATest">
+  </class>
+  <class name="ukrpostWebTesting.EnterPaMakeShipmentTest">
+  </class>
+  <class name="ukrpostWebTesting.CheckCalculatorTest">
+  </class>
+</classes>
+</test>
+</suite> 
