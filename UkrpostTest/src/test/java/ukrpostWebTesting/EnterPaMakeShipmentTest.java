@@ -15,17 +15,34 @@ import library.Utility;
 import objectRepository.LoginPage;
 import objectRepository.MainPage;
 import objectRepository.PersonalAccountMainPage;
+import objectRepository.ShipmentRegistrationPage;
 public class EnterPaMakeShipmentTest {
 	WebDriver wd = BrowsersSettings.inizializeDriver();
 	WebDriverWait wait = new WebDriverWait(wd, 10);
 	String loginAbraam = Utility.getVariables().getProperty("loginAbraam");
 	String passwordAbraam = Utility.getVariables().getProperty("passwordAbraam");
     String ukrpostUrl = Utility.getVariables().getProperty("mainUrl");
+    String dropOfPostcode = Utility.getVariables().getProperty("dropOfPostcode");
+    String recipientSurname = Utility.getVariables().getProperty("recipientSurname");
+    String recipientName = Utility.getVariables().getProperty("recipientName");
+    String recipientPhone = Utility.getVariables().getProperty("recipientPhone");
+    String deliveryType = Utility.getVariables().getProperty("deliveryType");
+    String recipientRegion = Utility.getVariables().getProperty("recipientRegion");
+    String recipientStreet = Utility.getVariables().getProperty("recipientStreet");
+    String recipientHouse = Utility.getVariables().getProperty("recipientHouse");
+    String recipientCity = Utility.getVariables().getProperty("recipientCity");
+    String apartamentNumber = Utility.getVariables().getProperty("apartamentNumber");
+    String recipientIndex = Utility.getVariables().getProperty("recipientIndex");
+    String shipmentWeight = Utility.getVariables().getProperty("shipmentWeight");
+    String declaredPriceSum = Utility.getVariables().getProperty("declaredPriceSum");
+    String shipmentLenght = Utility.getVariables().getProperty("shipmentLenght");
+    String postPaySum = Utility.getVariables().getProperty("postPaySum");
+    
     MainPage mp = new MainPage(wd);
     LoginPage lp = new LoginPage(wd);
     PersonalAccountMainPage pamp = new PersonalAccountMainPage(wd);
+    ShipmentRegistrationPage srp = new ShipmentRegistrationPage(wd);
    
-   	   	
 	@Test (description = "This test will check condition of web site")
 	public void Loadsite () {
 		wd.get(ukrpostUrl);	
@@ -56,33 +73,32 @@ public class EnterPaMakeShipmentTest {
 	
 	@Test (dependsOnMethods="CreateShipmentGroup", description = "Test to create shipment")
 	public void CreateShipment () {
-		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[id='dropOffPostcode']")));
-		wd.findElement(By.cssSelector("input[id='dropOffPostcode']")).sendKeys("04080");
-		wd.findElement(By.cssSelector("input[id='surname']")).sendKeys("Артеменко");
-		wd.findElement(By.cssSelector("input[id='name']")).sendKeys("Павло");
-		wd.findElement(By.cssSelector("input[id='phone']")).sendKeys("633075463");
-		Select dropdownDelType = new Select(wd.findElement(By.id("delivery-method")));
-		dropdownDelType.selectByValue("D2D");
-		Select dropdownRegion = new Select(wd.findElement(By.id("region")));
-		dropdownRegion.selectByValue("Херсонська");
-		wd.findElement(By.cssSelector("input[id='street']")).sendKeys("Арбузна");
-		wd.findElement(By.cssSelector("input[id='house']")).sendKeys("15");
-		wd.findElement(By.cssSelector("input[id='city']")).sendKeys("Херсон");
-		wd.findElement(By.cssSelector("input[id='apartment']")).sendKeys("20");
-		wd.findElement(By.cssSelector("input[id='post-index']")).sendKeys("43026");
-		wd.findElement(By.cssSelector("input[id='weight']")).sendKeys("2000");
-		wd.findElement(By.cssSelector("input[id='declared']")).sendKeys("500");
-		wd.findElement(By.cssSelector("input[id='biggest-size']")).sendKeys("50");
-		wd.findElement(By.cssSelector("input[id='postpay']")).sendKeys("60");
+		wait.until(ExpectedConditions.elementToBeClickable(srp.inputDropOfPostcode()));
+		srp.inputDropOfPostcode().sendKeys(dropOfPostcode);
+		srp.inputSurName().sendKeys(recipientSurname);
+		srp.inputName().sendKeys(recipientName);
+		srp.inputPhone().sendKeys(recipientPhone);
+		Select dropdownDelType = new Select(srp.selectDeliveryMethod());
+		dropdownDelType.selectByValue(deliveryType);
+		Select dropdownRegion = new Select(srp.selectRegion());
+		dropdownRegion.selectByValue(recipientRegion);
+		srp.inputStreet().sendKeys(recipientStreet);
+		srp.inputHouse().sendKeys(recipientHouse);
+	    srp.inputCity().sendKeys(recipientCity);
+	    srp.inputApartment().sendKeys(apartamentNumber);
+	    srp.inputIndex().sendKeys(recipientIndex);
+		srp.inputWeight().sendKeys(shipmentWeight);
+		srp.inputDeclaredPrice().sendKeys(declaredPriceSum);
+        srp.inputLenght().sendKeys(shipmentLenght);
+	    srp.inputPostpay().sendKeys(postPaySum);
 		//Check default radio button is selected
-		Assert.assertTrue( wd.findElement(By.id("RETURN")).isSelected());
-		wd.findElement(By.cssSelector("label[for='RETURN_AFTER_FREE_STORAGE']")).click();
-		wd.findElement(By.cssSelector("label[for='recommended']")).click();
-		wd.findElement(By.cssSelector("label[for='sms']")).click();
-		//Check checkBox  is selected
-		Assert.assertTrue( wd.findElement(By.id("recommended")).isSelected());
-		Assert.assertTrue( wd.findElement(By.id("sms")).isSelected());
-		wd.findElement(By.cssSelector("button[id='submit-button']")).click();
+		Assert.assertTrue(srp.radioButtonReturn().isSelected());
+		srp.radioButtonReturn().click();
+		srp.radioButtonRecommended().click();
+		srp.radioButtonSms().click();
+		Assert.assertTrue(srp.radioButtonReturn().isSelected());
+		Assert.assertTrue(srp.radioButtonSms().isSelected());
+		srp.submitButton().click();
 	}
 	
 	@Test (dependsOnMethods="CreateShipment", description = "Test to check crreated shipment data")
