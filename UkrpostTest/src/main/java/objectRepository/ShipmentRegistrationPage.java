@@ -26,10 +26,11 @@ public class ShipmentRegistrationPage {
  By inputLenght = By.cssSelector("input[id='biggest-size']");
  By inputPostpay = By.cssSelector("input[id='postpay']");
  By radioButtonReturn = By.id("RETURN");
- By radioButtonAfterFreeStorage = By.cssSelector("RETURN_AFTER_FREE_STORAGE");
- By radioButtonRecommended = By.cssSelector("recommended");
- By radioButtonSms = By.cssSelector("sms");
- By submitButton = By.cssSelector("submit-button");
+ By radioButtonAfterFreeStorage = By.cssSelector("label[for='RETURN_AFTER_FREE_STORAGE']");
+ By radioButtonRecommended = By.cssSelector("label[for='recommended']");
+ By radioButtonSms = By.cssSelector("label[for='sms']");
+ By submitButton =  By.id("submit-button");
+
  
  public WebElement inputDropOfPostcode() {
 	return wd.findElement(inputDropOfPostcode);
@@ -88,5 +89,7 @@ public class ShipmentRegistrationPage {
  public WebElement submitButton() {
 		return wd.findElement(submitButton);
 	  }
- 
+ public WebElement radioButtonAfterFreeStorage() {
+		return wd.findElement(radioButtonAfterFreeStorage);
+	  }
 }
