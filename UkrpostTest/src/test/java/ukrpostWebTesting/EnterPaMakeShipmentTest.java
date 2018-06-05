@@ -19,25 +19,8 @@ import objectRepository.ShipmentRegistrationPage;
 public class EnterPaMakeShipmentTest {
 	WebDriver wd = BrowsersSettings.inizializeDriver();
 	WebDriverWait wait = new WebDriverWait(wd, 10);
-	String loginAbraam = Utility.getVariables().getProperty("loginAbraam");
-	String passwordAbraam = Utility.getVariables().getProperty("passwordAbraam");
-    String ukrpostUrl = Utility.getVariables().getProperty("mainUrl");
-    String dropOfPostcode = Utility.getVariables().getProperty("dropOfPostcode");
-    String recipientSurname = Utility.getVariables().getProperty("recipientSurname");
-    String recipientName = Utility.getVariables().getProperty("recipientName");
-    String recipientPhone = Utility.getVariables().getProperty("recipientPhone");
-    String deliveryType = Utility.getVariables().getProperty("deliveryType");
-    String recipientRegion = Utility.getVariables().getProperty("recipientRegion");
-    String recipientStreet = Utility.getVariables().getProperty("recipientStreet");
-    String recipientHouse = Utility.getVariables().getProperty("recipientHouse");
-    String recipientCity = Utility.getVariables().getProperty("recipientCity");
-    String apartamentNumber = Utility.getVariables().getProperty("apartamentNumber");
-    String recipientIndex = Utility.getVariables().getProperty("recipientIndex");
-    String shipmentWeight = Utility.getVariables().getProperty("shipmentWeight");
-    String declaredPriceSum = Utility.getVariables().getProperty("declaredPriceSum");
-    String shipmentLenght = Utility.getVariables().getProperty("shipmentLenght");
-    String postPaySum = Utility.getVariables().getProperty("postPaySum");
-    
+	   
+  
     MainPage mp = new MainPage(wd);
     LoginPage lp = new LoginPage(wd);
     PersonalAccountMainPage pamp = new PersonalAccountMainPage(wd);
@@ -45,7 +28,7 @@ public class EnterPaMakeShipmentTest {
    
 	@Test (description = "This test will check condition of web site")
 	public void Loadsite () {
-		wd.get(ukrpostUrl);	
+		wd.get(Utility.getVariables().getProperty("mainUrl"));	
 		mp.personalAccountId().click();
 		String currentUrl = wd.getCurrentUrl();
 		Assert.assertTrue(currentUrl.matches("^(http|https)://ukrposhta.ua/login/"));
@@ -53,8 +36,8 @@ public class EnterPaMakeShipmentTest {
 	
 	@Test (dependsOnMethods="Loadsite", description = "This test will login personal account")
 	public void LoginToPa()	{
-		lp.inputLoginId().sendKeys(loginAbraam);
-		lp.inputPasswordId().sendKeys(passwordAbraam);
+		lp.inputLoginId().sendKeys(Utility.getVariables().getProperty("loginAbraam"));
+		lp.inputPasswordId().sendKeys(Utility.getVariables().getProperty("passwordAbraam"));
 		lp.submitButtonId().click();
 		pamp.headerId().getText().equals("Особистий кабінет");
 	}
@@ -70,34 +53,32 @@ public class EnterPaMakeShipmentTest {
 		wait.until(ExpectedConditions.visibilityOf(pamp.registerShipmentHeader()));
 		pamp.registerShipmentHeader().getText().equals("Реєстрація нового відправлення");
 	}
-	
+
 	@Test (dependsOnMethods="CreateShipmentGroup", description = "Test to create shipment")
 	public void CreateShipment () {
 		wait.until(ExpectedConditions.elementToBeClickable(srp.inputDropOfPostcode()));
-		srp.inputDropOfPostcode().sendKeys(dropOfPostcode);
-		srp.inputSurName().sendKeys(recipientSurname);
-		srp.inputName().sendKeys(recipientName);
-		srp.inputPhone().sendKeys(recipientPhone);
+		srp.inputDropOfPostcode().sendKeys(Utility.getVariables().getProperty("dropOfPostcode"));
+		srp.inputSurName().sendKeys(Utility.getVariables().getProperty("recipientSurname"));
+		srp.inputName().sendKeys(Utility.getVariables().getProperty("recipientName"));
+		srp.inputPhone().sendKeys(Utility.getVariables().getProperty("recipientPhone"));
 		Select dropdownDelType = new Select(srp.selectDeliveryMethod());
-		dropdownDelType.selectByValue(deliveryType);
+		dropdownDelType.selectByValue(Utility.getVariables().getProperty("deliveryType"));
 		Select dropdownRegion = new Select(srp.selectRegion());
-		dropdownRegion.selectByValue(recipientRegion);
-		srp.inputStreet().sendKeys(recipientStreet);
-		srp.inputHouse().sendKeys(recipientHouse);
-	    srp.inputCity().sendKeys(recipientCity);
-	    srp.inputApartment().sendKeys(apartamentNumber);
-	    srp.inputIndex().sendKeys(recipientIndex);
-		srp.inputWeight().sendKeys(shipmentWeight);
-		srp.inputDeclaredPrice().sendKeys(declaredPriceSum);
-        srp.inputLenght().sendKeys(shipmentLenght);
-	    srp.inputPostpay().sendKeys(postPaySum);
+		dropdownRegion.selectByValue("Херсонська");
+		srp.inputStreet().sendKeys(Utility.getVariables().getProperty("recipientStreet"));
+		srp.inputHouse().sendKeys(Utility.getVariables().getProperty("recipientHouse"));
+	    srp.inputCity().sendKeys(Utility.getVariables().getProperty("recipientCity"));
+	    srp.inputApartment().sendKeys(Utility.getVariables().getProperty("apartamentNumber"));
+	    srp.inputIndex().sendKeys(Utility.getVariables().getProperty("recipientIndex"));
+		srp.inputWeight().sendKeys(Utility.getVariables().getProperty("shipmentWeight"));
+		srp.inputDeclaredPrice().sendKeys(Utility.getVariables().getProperty("declaredPriceSum"));
+        srp.inputLenght().sendKeys(Utility.getVariables().getProperty("shipmentLenght"));
+	    srp.inputPostpay().sendKeys(Utility.getVariables().getProperty("postPaySum"));
 		//Check default radio button is selected
 		Assert.assertTrue(srp.radioButtonReturn().isSelected());
-		srp.radioButtonReturn().click();
+		srp.radioButtonAfterFreeStorage().click();
 		srp.radioButtonRecommended().click();
 		srp.radioButtonSms().click();
-		Assert.assertTrue(srp.radioButtonReturn().isSelected());
-		Assert.assertTrue(srp.radioButtonSms().isSelected());
 		srp.submitButton().click();
 	}
 	
