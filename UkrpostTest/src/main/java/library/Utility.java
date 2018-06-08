@@ -1,5 +1,4 @@
 package library;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.text.SimpleDateFormat;
@@ -9,21 +8,30 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.BeforeSuite;
-public class Utility {
-WebDriver wd;
 
-	@BeforeSuite
+
+public class Utility {
+	
+	private static Properties properties = new Properties();
+	WebDriver wd;
+	
 	public static Properties getVariables () {
-  		Properties prop = new Properties();
+		return properties;
+	}
+	
+	public static String getProperty(String name) {
+		return properties.getProperty(name);
+	}
+	
+	public static void loadProperties() {
 		try {
 			FileInputStream fis = new FileInputStream("./src/main/java/library/Variables.properties");
-			prop.load(fis);
+			properties.load(fis);
+			System.out.println("Properties is loaded");
  		    }  
 		catch (Exception e) {
 			System.out.println("Error during exception is"+e.getMessage());
 		}
-		return prop;
 	}
 	 
 	public static void CaptureScreenshot (WebDriver wd, String screenshotName) 	{

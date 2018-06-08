@@ -17,8 +17,6 @@ public class DropDownTest {
 	
 	WebDriver wd = BrowsersSettings.inizializeDriver();
 	String ukrpostUrl = Utility.getVariables().getProperty("mainUrl"); 
-
-
     
 	@Test (description = "This test will check condition of web site")
 		public void Loadsite ()	{

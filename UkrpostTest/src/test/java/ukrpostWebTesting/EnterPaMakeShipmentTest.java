@@ -9,6 +9,7 @@ import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import library.BrowsersSettings;
 import library.Utility;
@@ -16,19 +17,27 @@ import objectRepository.LoginPage;
 import objectRepository.MainPage;
 import objectRepository.PersonalAccountMainPage;
 import objectRepository.ShipmentRegistrationPage;
+import static library.Utility.getProperty;
+import static library.Utility.loadProperties;
+
 public class EnterPaMakeShipmentTest {
 	WebDriver wd = BrowsersSettings.inizializeDriver();
 	WebDriverWait wait = new WebDriverWait(wd, 10);
 	   
-  
     MainPage mp = new MainPage(wd);
     LoginPage lp = new LoginPage(wd);
+    //Page Obj pattern
     PersonalAccountMainPage pamp = new PersonalAccountMainPage(wd);
     ShipmentRegistrationPage srp = new ShipmentRegistrationPage(wd);
-   
+    
+    @BeforeClass
+    public static void setUp() {
+    	loadProperties();
+    }
+     
 	@Test (description = "This test will check condition of web site")
 	public void Loadsite () {
-		wd.get(Utility.getVariables().getProperty("mainUrl"));	
+		wd.get(getProperty("mainUrl"));	
 		mp.personalAccountId().click();
 		String currentUrl = wd.getCurrentUrl();
 		Assert.assertTrue(currentUrl.matches("^(http|https)://ukrposhta.ua/login/"));

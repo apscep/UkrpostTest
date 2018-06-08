@@ -1,6 +1,5 @@
 package ukrpostWebTesting;
 import java.io.IOException;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.ITestResult;
@@ -14,15 +13,13 @@ import objectRepository.MainPage;
 public class EnterPaNegativeTest {
 	
 	WebDriver wd = BrowsersSettings.inizializeDriver();
-	String loginAbraam = Utility.getVariables().getProperty("loginAbraam");
-	String passwordAbraam = Utility.getVariables().getProperty("passwordAbraamIncorrect");
-    String ukrpostUrl = Utility.getVariables().getProperty("mainUrl"); 
+	//Page Obj pattern
     MainPage mp = new MainPage(wd);
     LoginPage lp = new LoginPage(wd);
      	
 	@Test (description = "This test will check condition of web site")
 	public void Loadsite () {
-		wd.get(ukrpostUrl);	
+		wd.get(Utility.getVariables().getProperty("mainUrl"));	
 		String currentUrl = wd.getCurrentUrl();
 		Assert.assertTrue(currentUrl.matches("^(http|https)://ukrposhta.ua/"));
 		mp.personalAccountId().click();
@@ -32,10 +29,10 @@ public class EnterPaNegativeTest {
 	
 	@Test (dependsOnMethods="Loadsite", description = "This test will login personal account")
 	public void LoginToPa()  {
-		lp.inputLoginId().sendKeys(loginAbraam);
-		lp.inputPasswordId().sendKeys(passwordAbraam);
+		lp.inputLoginId().sendKeys(Utility.getVariables().getProperty("loginAbraam"));
+		lp.inputPasswordId().sendKeys(Utility.getVariables().getProperty("passwordAbraamIncorrect"));
 		lp.submitButtonId().click();
-		wd.findElement(By.xpath("//*[@id=\"login-form\"]/div")).getText().equals("Логін або пароль не вірні!");
+		lp.loginForm().getText().equals("Логін або пароль не вірні!");
 	}
 	 @AfterMethod 
 	 public void takeScreenShotOnFailure(ITestResult testResult) throws IOException { 

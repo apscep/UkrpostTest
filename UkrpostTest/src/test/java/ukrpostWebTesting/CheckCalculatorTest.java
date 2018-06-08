@@ -13,14 +13,14 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import library.BrowsersSettings;
 import library.Utility;
+import static library.Utility.getProperty;
 public class CheckCalculatorTest extends BrowsersSettings {
 	WebDriver wd = BrowsersSettings.inizializeDriver();
-	String ukrpostUrl = Utility.getVariables().getProperty("mainUrl");
 	MainPage mp = new MainPage(wd);
 	
    	@Test (description = "This test will check condition of web site")
 	public void Loadsite () {
-		wd.get(ukrpostUrl);	
+		wd.get(getProperty("mainUrl"));	
 		String currentUrl = wd.getCurrentUrl();
 		Assert.assertTrue(currentUrl.matches("^(http|https)://ukrposhta.ua/"));
 		mp.calculatorId().click();
@@ -29,7 +29,7 @@ public class CheckCalculatorTest extends BrowsersSettings {
 	}
 	
 	@Test (dependsOnMethods="Loadsite", description = "This test will calculate express shipment From Kyiv to Lviv")
-	public void CalculateShipment() throws IOException	{
+	public void CalculateShipment() {
 		WebDriverWait wait = new WebDriverWait(wd, 8);
 		//Select type of shipment
 		Select typeSelect = new Select(wd.findElement(By.cssSelector("select[name='type_of_departure']")));
@@ -67,7 +67,7 @@ public class CheckCalculatorTest extends BrowsersSettings {
 		}
 
 	@AfterClass
-		public void CloseBrowser() throws IOException {
+		public void CloseBrowser() {
 		wd.quit();
 	}
 

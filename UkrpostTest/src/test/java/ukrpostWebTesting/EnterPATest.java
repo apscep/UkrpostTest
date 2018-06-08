@@ -12,19 +12,15 @@ import objectRepository.LoginPage;
 import objectRepository.MainPage;
 import objectRepository.PersonalAccountMainPage;
 public class EnterPATest  {
-	
 	WebDriver wd = BrowsersSettings.inizializeDriver();
-	String loginAbraam = Utility.getVariables().getProperty("loginAbraam");
-	String passwordAbraam = Utility.getVariables().getProperty("passwordAbraam");
-    String ukrpostUrl = Utility.getVariables().getProperty("mainUrl");
-    //Page object patterns
+	//Page Obj pattern
     MainPage mp = new MainPage(wd);
     LoginPage lp = new LoginPage(wd);
     PersonalAccountMainPage pamp = new PersonalAccountMainPage(wd);
    	
    	@Test (description = "This test will check condition of web site")
 	public void Loadsite () {
-		wd.get(ukrpostUrl);	
+		wd.get(Utility.getVariables().getProperty("mainUrl"));	
 		String currentUrl = wd.getCurrentUrl();
 		Assert.assertTrue(currentUrl.matches("^(http|https)://ukrposhta.ua/"));
 		mp.personalAccountId().click();
@@ -34,8 +30,8 @@ public class EnterPATest  {
 	
 	@Test (dependsOnMethods="Loadsite", description = "This test will login personal account")
 	public void LoginToPa() {
-		lp.inputLoginId().sendKeys(loginAbraam);
-		lp.inputPasswordId().sendKeys(passwordAbraam);
+		lp.inputLoginId().sendKeys(Utility.getVariables().getProperty("loginAbraam"));
+		lp.inputPasswordId().sendKeys(Utility.getVariables().getProperty("passwordAbraam"));
 		lp.submitButtonId().click();
 		pamp.headerId().getText().equals("Особистий кабінет");
 	}
