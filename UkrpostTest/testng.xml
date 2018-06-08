@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite Ukrpost web testing" parallel="tests" preserve-order="true">
+ <listeners>         
+          <listener class-name="library.ExtentReporterNG"/>
+  </listeners>
 <test name="Regression Sequails Order" preserve-order="true" parallel="none">
 <classes>
       <class name="ukrpostWebTesting.EnterPaNegativeTest">

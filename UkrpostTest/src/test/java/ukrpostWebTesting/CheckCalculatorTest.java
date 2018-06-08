@@ -25,7 +25,7 @@ public class CheckCalculatorTest extends BrowsersSettings {
 		Assert.assertTrue(currentUrl.matches("^(http|https)://ukrposhta.ua/"));
 		mp.calculatorId().click();
 		String currentUrl2 = wd.getCurrentUrl();
-		Assert.assertTrue(currentUrl2.matches("^(http|https)://ukrposhta.ua/kalkulyator-forma-rozraxunku/"));
+		Assert.assertTrue(currentUrl2.matches("^(http|https)://a.ukrposhta.ua/calc/s/calc.html"));
 	}
 	
 	@Test (dependsOnMethods="Loadsite", description = "This test will calculate express shipment From Kyiv to Lviv")
@@ -51,12 +51,12 @@ public class CheckCalculatorTest extends BrowsersSettings {
 		//Chose shipment length in cm
 		wd.findElement(By.cssSelector("input[name='side']")).sendKeys("31");
 		//Calculate shipment
-		wd.findElement(By.xpath("//*[@id=\"col_2\"]/div[4]/div[7]/button")).click();
+		wd.findElement(By.xpath("//*[@id=\"submit-button\"]")).click();
 		//Wait-check element presence
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("result")));
 		Assert.assertTrue(wd.findElement(By.id("result")).isDisplayed());
 		//Validate Shipment price Expected - 48
-		Assert.assertEquals(wd.findElement(By.xpath("//*[@id=\"sum_result\"]")).getText(), "Загальна сума: 48 грн.");
+		Assert.assertEquals(wd.findElement(By.id("sum_result")).getText(), "Загальна сума: 48 грн.");
 
 		}
 	 @AfterMethod
