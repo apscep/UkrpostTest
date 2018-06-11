@@ -1,6 +1,5 @@
 package ukrpostWebTesting;
 import java.io.IOException;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -13,6 +12,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import library.BrowsersSettings;
 import library.Utility;
+import objectRepository.CreatedShipmentPage;
 import objectRepository.LoginPage;
 import objectRepository.MainPage;
 import objectRepository.PersonalAccountMainPage;
@@ -29,6 +29,7 @@ public class EnterPaMakeShipmentTest {
     //Page Obj pattern
     PersonalAccountMainPage pamp = new PersonalAccountMainPage(wd);
     ShipmentRegistrationPage srp = new ShipmentRegistrationPage(wd);
+    CreatedShipmentPage csp = new CreatedShipmentPage(wd);
     
     @BeforeClass
     public static void setUp() {
@@ -45,8 +46,8 @@ public class EnterPaMakeShipmentTest {
 	
 	@Test (dependsOnMethods="Loadsite", description = "This test will login personal account")
 	public void LoginToPa()	{
-		lp.inputLoginId().sendKeys(Utility.getVariables().getProperty("loginAbraam"));
-		lp.inputPasswordId().sendKeys(Utility.getVariables().getProperty("passwordAbraam"));
+		lp.inputLoginId().sendKeys(getProperty("loginAbraam"));
+		lp.inputPasswordId().sendKeys(getProperty("passwordAbraam"));
 		lp.submitButtonId().click();
 		pamp.headerId().getText().equals("Особистий кабінет");
 	}
@@ -66,23 +67,23 @@ public class EnterPaMakeShipmentTest {
 	@Test (dependsOnMethods="CreateShipmentGroup", description = "Test to create shipment")
 	public void CreateShipment () {
 		wait.until(ExpectedConditions.elementToBeClickable(srp.inputDropOfPostcode()));
-		srp.inputDropOfPostcode().sendKeys(Utility.getVariables().getProperty("dropOfPostcode"));
-		srp.inputSurName().sendKeys(Utility.getVariables().getProperty("recipientSurname"));
-		srp.inputName().sendKeys(Utility.getVariables().getProperty("recipientName"));
-		srp.inputPhone().sendKeys(Utility.getVariables().getProperty("recipientPhone"));
+		srp.inputDropOfPostcode().sendKeys(getProperty("dropOfPostcode"));
+		srp.inputSurName().sendKeys(getProperty("recipientSurname"));
+		srp.inputName().sendKeys(getProperty("recipientName"));
+		srp.inputPhone().sendKeys(getProperty("recipientPhone"));
 		Select dropdownDelType = new Select(srp.selectDeliveryMethod());
-		dropdownDelType.selectByValue(Utility.getVariables().getProperty("deliveryType"));
+		dropdownDelType.selectByValue(getProperty("deliveryType"));
 		Select dropdownRegion = new Select(srp.selectRegion());
 		dropdownRegion.selectByValue("Херсонська");
-		srp.inputStreet().sendKeys(Utility.getVariables().getProperty("recipientStreet"));
-		srp.inputHouse().sendKeys(Utility.getVariables().getProperty("recipientHouse"));
-	    srp.inputCity().sendKeys(Utility.getVariables().getProperty("recipientCity"));
-	    srp.inputApartment().sendKeys(Utility.getVariables().getProperty("apartamentNumber"));
-	    srp.inputIndex().sendKeys(Utility.getVariables().getProperty("recipientIndex"));
-		srp.inputWeight().sendKeys(Utility.getVariables().getProperty("shipmentWeight"));
-		srp.inputDeclaredPrice().sendKeys(Utility.getVariables().getProperty("declaredPriceSum"));
-        srp.inputLenght().sendKeys(Utility.getVariables().getProperty("shipmentLenght"));
-	    srp.inputPostpay().sendKeys(Utility.getVariables().getProperty("postPaySum"));
+		srp.inputStreet().sendKeys(getProperty("recipientStreet"));
+		srp.inputHouse().sendKeys(getProperty("recipientHouse"));
+	    srp.inputCity().sendKeys(getProperty("recipientCity"));
+	    srp.inputApartment().sendKeys(getProperty("apartamentNumber"));
+	    srp.inputIndex().sendKeys(getProperty("recipientIndex"));
+		srp.inputWeight().sendKeys(getProperty("shipmentWeight"));
+		srp.inputDeclaredPrice().sendKeys(getProperty("declaredPriceSum"));
+        srp.inputLenght().sendKeys(getProperty("shipmentLenght"));
+	    srp.inputPostpay().sendKeys(getProperty("postPaySum"));
 		//Check default radio button is selected
 		Assert.assertTrue(srp.radioButtonReturn().isSelected());
 		srp.radioButtonAfterFreeStorage().click();
@@ -93,11 +94,11 @@ public class EnterPaMakeShipmentTest {
 	
 	@Test (dependsOnMethods="CreateShipment", description = "Test to check crreated shipment data")
 	public void CheckShipmentData () {
-		wd.findElement(By.xpath("//*[@id=\"main-wrap\"]/div[2]/div/div/div[2]/div[2]/div[2]/div/div[1]/table/tbody/tr/td[7]/button/i")).click();
-		String actualShipmentStatus =  wd.findElement(By.xpath("//*[@class='modal fade ng-scope in']/div/div/div[2]/table/tbody/tr[2]/td")).getText();
+		csp.createdShipmentButton().click();
+		String actualShipmentStatus =  csp.shipmentStatus().getText();
 		// Check shipment status and price
 		Assert.assertEquals(actualShipmentStatus, "Створене");
-		String actualShipmentPrice =  wd.findElement(By.xpath("//*[@class='modal fade ng-scope in']/div/div/div[2]/table/tbody/tr[10]/td/div/div")).getText();
+		String actualShipmentPrice =  csp.shipmentPrice().getText();
 		Assert.assertEquals(actualShipmentPrice, "63.9 грн.");
 	}
 	 @AfterMethod 

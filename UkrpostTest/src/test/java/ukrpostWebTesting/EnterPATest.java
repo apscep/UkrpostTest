@@ -1,17 +1,26 @@
 package ukrpostWebTesting;
+import static library.Utility.loadProperties;
 import java.io.IOException;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import library.BrowsersSettings;
 import library.Utility;
 import objectRepository.LoginPage;
 import objectRepository.MainPage;
 import objectRepository.PersonalAccountMainPage;
+import static library.Utility.getProperty;
 public class EnterPATest  {
+	
+    @BeforeClass
+    public static void setUp() {
+    	loadProperties();
+    }
+	
 	WebDriver wd = BrowsersSettings.inizializeDriver();
 	//Page Obj pattern
     MainPage mp = new MainPage(wd);
@@ -20,7 +29,7 @@ public class EnterPATest  {
    	
    	@Test (description = "This test will check condition of web site")
 	public void Loadsite () {
-		wd.get(Utility.getVariables().getProperty("mainUrl"));	
+		wd.get(getProperty("mainUrl"));	
 		String currentUrl = wd.getCurrentUrl();
 		Assert.assertTrue(currentUrl.matches("^(http|https)://ukrposhta.ua/"));
 		mp.personalAccountId().click();
@@ -30,8 +39,8 @@ public class EnterPATest  {
 	
 	@Test (dependsOnMethods="Loadsite", description = "This test will login personal account")
 	public void LoginToPa() {
-		lp.inputLoginId().sendKeys(Utility.getVariables().getProperty("loginAbraam"));
-		lp.inputPasswordId().sendKeys(Utility.getVariables().getProperty("passwordAbraam"));
+		lp.inputLoginId().sendKeys(getProperty("loginAbraam"));
+		lp.inputPasswordId().sendKeys(getProperty("passwordAbraam"));
 		lp.submitButtonId().click();
 		pamp.headerId().getText().equals("Особистий кабінет");
 	}
