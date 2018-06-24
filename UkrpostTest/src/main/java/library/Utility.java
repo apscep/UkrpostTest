@@ -48,6 +48,18 @@ public class Utility {
 		}	
 	}
 	
+	public static Properties loadPropertiesCucumber() {
+		try {
+			FileInputStream fis = new FileInputStream("./src/main/java/library/Variables.properties");
+			properties.load(fis);
+			System.out.println("Properties is loaded");
+ 		    }  
+		catch (Exception e) {
+			System.out.println("Error during exception is"+e.getMessage());
+			
+		}
+		return properties;
+	}
 
 		
 	}
