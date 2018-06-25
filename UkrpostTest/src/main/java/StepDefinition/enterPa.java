@@ -1,13 +1,6 @@
 package StepDefinition;
-
-
-import static library.Utility.loadProperties;
-
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -19,10 +12,7 @@ import objectRepository.PersonalAccountMainPage;
 
 public class enterPa {
 
-    @BeforeClass
-    public static void setUp() {
-    	loadProperties();
-    }	
+	
 
     WebDriver wd = BrowsersSettings.inizializeDriver();
 	//Page Obj pattern
@@ -41,36 +31,41 @@ public class enterPa {
 			Assert.assertTrue(currentUrl2.matches("^(http|https)://ukrposhta.ua/login/"));	
 				
 	}
-	@When("^user input ([^\"]*)$") 
-	public void enterLogin (String whenCond) {
-		if(whenCond.equals("correct")) {
+	@When("^user input correct login and correct password in the password frame, click enter button$") 
+	public void enterPaCorrectData () {
 			lp.inputLoginId().sendKeys(Utility.loadPropertiesCucumber().getProperty("loginAbraam"));
 			lp.inputPasswordId().sendKeys(Utility.loadPropertiesCucumber().getProperty("passwordAbraam"));
 			lp.submitButtonId().click();
-			
-			
-		}
-		if (whenCond.equals("incorrect")) {
-			lp.inputLoginId().sendKeys(Utility.loadPropertiesCucumber().getProperty("loginAbraam"));
-			lp.inputPasswordId().sendKeys(Utility.loadPropertiesCucumber().getProperty("passwordAbraamIncorrect"));
-			lp.submitButtonId().click();
-			
-		}
 	}
-	@Then("^user  ([^\"]*)$")
-	public void checkEntering  (String thenCond) {
-		if(thenCond.equals("enter")) {
+	
+	@Then("^user enter personal account")
+	public void enteringAccount  () {
 			pamp.headerId().getText().equals("Особистий кабінет");
-	}
-		if (thenCond.equals("user can't")) {
-			lp.loginForm().getText().equals("Логін або пароль не вірні!");
-			}
-		}
-
+	     	}
 	
-		@AfterClass
-			public void CloseBrowser() {
-				wd.quit();
-	}
+	@Then("^user logging out")
+	public void loggingOut  () {
+		pamp.logoutButtonId().click();
+	     	}
 	
+	@When("^user input incorrect login  in the login frame, enter incorrect password in the password frame, click enter button$")
+	public void enterPaIncorrectData ()  {
+		mp.personalAccountId().click();
+		String currentUrl2 = wd.getCurrentUrl();
+		Assert.assertTrue(currentUrl2.matches("^(http|https)://ukrposhta.ua/login/"));	
+		lp.inputLoginId().sendKeys(Utility.loadPropertiesCucumber().getProperty("loginAbraam"));
+		lp.inputPasswordId().sendKeys(Utility.loadPropertiesCucumber().getProperty("passwordAbraamIncorrect"));
+		lp.submitButtonId().click();
+	   	}
+		 
+	@Then("^user can't enter personal account, got error message$")
+	public void checkerrorMessage()  {
+		lp.loginForm().getText().equals("Логін або пароль не вірні!");
+	    ;
+	}
+	@Then("^close browser$")
+	public void CloseBrowser()  {
+		wd.quit();
+	}
+		
 }
