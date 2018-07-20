@@ -20,6 +20,7 @@ public class BrowsersSettings {
 				System.setProperty("webdriver.chrome.driver", "./Drivers/chromedriver.exe");
 				ChromeOptions chromeOptions = new ChromeOptions();
 			   	chromeOptions.addArguments("--start-maximized");
+			   	chromeOptions.addArguments("--disable-notifications");
 			   	wd = new ChromeDriver(chromeOptions);
 			   	wd.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			   	wd.manage().deleteAllCookies();

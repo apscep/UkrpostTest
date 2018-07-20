@@ -13,7 +13,7 @@ import objectRepository.PersonalAccountMainPage;
 public class enterPa {
 
 	
-
+ 
     WebDriver wd = BrowsersSettings.inizializeDriver();
 	//Page Obj pattern
     MainPage mp = new MainPage(wd);
